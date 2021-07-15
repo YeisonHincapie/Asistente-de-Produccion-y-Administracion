@@ -1,0 +1,73 @@
+<%- include("../views/head_html") -%>
+
+    <body>
+        <!--menu encabezado-->
+        <div>
+            <header>
+                <div class="d-flex justify-content-center container-fluid">
+                    <h2 id="nombre-programa">Auxiliar de Produción y Administración</h2>
+                    <!--el nombre del programa=> debe aparecer en todad las paginas-->
+                </div>
+            </header>
+            <nav id="menu" class="navbar navbar-expand-sm navbar-dark" role="navigation">
+                <!--menu-->
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="SAYFRE">
+                        <!--boton 1 (imagen LOGO empresa)-->
+                        <h2>SAYFRE</h2>
+                    </a>
+                </div>
+            </nav>
+        </div>
+
+        <div class="container ">
+            <h2 class="d-flex justify-content-center ">Bienvenido</h2>
+        </div>
+        <!--FORMULARIO LOGIN-->
+        <div class="d-flex mx-auto col-lg-3 col-md-4 ">
+            <div class="dialog " role="document">
+                <div class="py-1 container-fluid  mx-auto">
+                    <div class="card mx-auto">
+                        <div class="modal-header">
+                            <h5 class="modal-title mx-auto" id="login">Aceso de Usuarios</h5>
+                        </div>
+                        <div class="modal-body mx-auto" style="background-color:rgb(160, 204, 253);">
+                            <form action="" method="POST" class="form-group container-fluid mb-0">
+                                <div class="form-group  mb-0 col">
+                                    <label for="Rol" class="mx-auto">Rol del Usuario</label>
+                                    <input class="mx-auto" type="text" name="Rol" id="Rol" required>
+                                </div>
+                                <div class="form-group  mb-0 col">
+                                    <label for="pass" class="mx-auto">Contraseña</label>
+                                    <input class="mx-auto" type="text" name="pass" id="pass" required>
+                                </div>
+
+                                <div class="modal-footer">
+                                    <div class=" mx-auto ">
+                                        <button type="submit" class="btn btn-primary">Login</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--SWEET ALERT 2-->
+        <% if(typeof alert != "undefined") {%>
+            <script>
+                Swal.fire({
+                    title: '<%= alertTitle %>',
+                    text: '<%= alertMessage %>',
+                    icon: '<%= alertIcon %>',
+                    showConfirmButton: '<%= showConfirmButton %>',
+                    timer: false
+                }).then(() => {
+                    window.location = '/<%= ruta %>'
+                })
+            </script>
+            <% } %>
+    </body>
+
+    </html>

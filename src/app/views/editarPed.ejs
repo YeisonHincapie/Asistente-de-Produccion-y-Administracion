@@ -1,0 +1,124 @@
+<%- include("../views/head_html") -%>
+
+    <body>
+        <% if(pedidos) { %>
+            <div class="dialog  mx-5" role="document">
+                <div class="py-1 container-fluid">
+                    <div class="card">
+                        <div class="modal-header mb-0">
+                            <h5 class="modal-title" id="Actualizar">Actualizar Entrada</h5>
+                            <a href="/pedidos/para_producir" type="button" class="close">
+                                <span aria-hidden="true">&times;</span>
+                            </a>
+                        </div>
+                        <div class="modal-body mb-0">
+                            <form action="editar/<%= pedidos.ID_Pedido %>" method="POST" class="form-group container-fluid mb-0" style="background: rgb(255, 255, 255);">
+                                <div class="form-group mb-0">
+                                    <!--INFORMACION DEL PEDIDO -->
+                                    <div class="form-group container-fluid mb-0" style="background: rgba(47, 250, 138, 0.541);">
+                                        <div class="form-group row mb-0">
+                                            <div class="form-group">
+                                                <input id="ID_Producto" value="<%= pedidos.ID_Pedido %>" hidden>
+                                            </div>
+                                            <div class="form-group col mb-0">
+                                                <label for="Fecha_de_Pedido">Fecha de encargo</label>
+                                                <input type="date" value="<%= pedidos.Fecha_de_Pedido %>" name="Fecha_de_Pedido" disabled>
+                                            </div>
+                                            <div class="form-group col mb-0 ">
+                                                <label for="Fecha_de_Entrega">Fecha de entrega</label>
+                                                <input type="date" value="<%= pedidos.Fecha_de_Entrega %>" name="Fecha_de_Entrega">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- seleccionar producto-->
+                                    <div class="form-group container-fluid ">
+                                        <p id="seleccion-pedido">Seleccione uno o varios de los siguientes productos deacuerdo al pedido del cliente</p>
+                                        <!-- titulo 1.pastel relleno sensilo -->
+                                        <div class="form-group row mb-0">
+                                            <div id="productos" class="form-control">
+                                                <h6>1. Pastel de relleno sencillo</h6>
+                                            </div>
+                                            <!-- opcon 1-->
+                                            <div class="form-group col mb-0">
+                                                <label for="Past_Sen_1">1. Guayaba</label>
+                                                <input type="number" class="form-control" value="<%= pedidos.Past_Sen_1 %>" name="Past_Sen_1" placeholder="Ingrece el # de unidades">
+                                            </div>
+                                            <!-- opcion 2 -->
+                                            <div class="form-group col mb-0">
+                                                <label for="Past_Sen_2">2. Arequipe</label>
+                                                <input type="number" class="form-control" value="<%= pedidos.Past_Sen_2 %>" name="Past_Sen_2" placeholder="Ingrece el # de unidades">
+                                            </div>
+                                            <!-- opcion 3 -->
+                                            <div class="form-group col mb-0">
+                                                <label for="Past_Sen_3">3. Queso</label>
+                                                <input type="number" class="form-control" value="<%= pedidos.Past_Sen_3 %>" name="Past_Sen_3" placeholder="Ingrece el # de unidades">
+                                            </div>
+                                        </div>
+                                        <!-- titulo 2.pastel relleno doble -->
+                                        <div id="productos" class="form-control">
+                                            <h6>2. Pastel de relleno doble</h6>
+                                        </div>
+                                        <div class="form-group row">
+                                            <!-- opcion 1 -->
+                                            <div class="form-group col mb-0">
+                                                <label for="Past_Dob_1">1. Guayaba y queso</label>
+                                                <input type="number" class="form-control" value="<%= pedidos.Past_Dob_1 %>" name="Past_Dob_1" placeholder="Ingrece el # de unidades">
+                                            </div>
+                                            <!-- opcion 2 -->
+                                            <div class="form-group col mb-0">
+                                                <label for="Past_Dob_2">2. Arequipe y queso</label>
+                                                <input type="number" class="form-control" value="<%= pedidos.Past_Dob_2 %>" name="Past_Dob_2" placeholder="Ingrece el # de unidades">
+                                            </div>
+                                            <!-- opcion 3 -->
+                                            <div class="form-group col mb-0">
+                                                <label for="Past_Dob_3">3. Tres quesos</label>
+                                                <input type="number" class="form-control" value="<%= pedidos.Past_Sen_3 %>" name="Past_Dob_3" placeholder="Ingrece el # de unidades">
+                                            </div>
+                                        </div>
+                                        <!-- titulo. 3 Panes -->
+                                        <div id="productos" class="form-control">
+                                            <h6>3. Productos de Panadería</h6>
+                                        </div>
+                                        <!-- opciones -->
+                                        <div class="form-group row mb-0">
+                                            <!-- pan 1 -->
+                                            <div class="form-group col-6 mb-0">
+                                                <lebel for="Pan_Queso">3. Pan con relleno de queso</lebel>
+                                                <input type="number" class="form-control" value="<%= pedidos.Pan_Queso %>" name="Pan_Queso" placeholder="Ingrece el # de unidades">
+                                            </div>
+                                            <!-- pan 2 -->
+                                            <div class="form-group col-6 mb-0">
+                                                <lebel for="Pan_Inte">4. Pan integral</lebel>
+                                                <input type="number" class="form-control" value="<%= pedidos.Pan_Inte %>" name="Pan_Inte" placeholder="Ingrece el # de unidades">
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer mb-0" id="espacio-medio-color-verde-2" class="justify-center">
+                                            <a href="/pedidos/para_producir" class="btn btn-danger " data-dismiss="modal">Cancelar</a>
+                                            <button type="submit" class="btn btn-primary">Actualizar Pedido</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <% } %>
+
+                    <% if(typeof alert != "undefined") {%>
+                        <script>
+                            Swal.fire({
+                                title: '<%= alertTitle %>',
+                                text: '<%= alertMessage %>',
+                                icon: '<%= alertIcon %>',
+                                showConfirmButton: '<%= showConfirmButton %>',
+                                timer: false
+                            }).then(() => {
+                                window.location = '/<%=ruta %>'
+                            })
+                        </script>
+                        <% } %>
+
+    </body>
+
+    </html>

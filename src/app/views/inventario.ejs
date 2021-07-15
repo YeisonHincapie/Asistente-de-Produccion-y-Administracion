@@ -1,0 +1,271 @@
+<%- include("../views/head_html") -%>
+
+    <body>
+        <!--menu de navegación-->
+        <%- include("../views/menu") -%>
+
+            <!--titulo pagina 1-->
+            <div class="d-flex justify-content-center container-fluid">
+                <h3 style="background: rgb(255, 255, 255)">Área de Inventario</h3>
+                <!--boton 2.1 de sub modulo-->
+            </div>
+            <div id="espacio-medio"></div>
+
+            <!--contenido-->
+            <div class="py-1 container-fluid col">
+                <div id="botones-mod-1" class="d-flex justify-content-center">
+                    <!-- Boton para Crear un producto-->
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#crear">
+                        Crear Nueva Entrada
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="crear" tabindex="-1" role="dialog" aria-labelledby="crear" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="crear">Crear Nueva Entrada</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                                </div>
+                                <div class="modal-body" style="background-color:rgb(122, 241, 196);">
+                                    <form action="inventario" method="POST" class="form-group container-fluid mb-0">
+                                        <div class="form-group row mb-0">
+                                            <div class="form-group">
+                                                <input name="ID_Producto" hidden>
+                                            </div>
+                                            <div class="form-group col mb-0">
+                                                <label for="Nombre_Producto">Nombre</label>
+                                                <input type="text " class="form-control" name="Nombre_Producto" placeholder="Nombre del producto: " required="true ">
+                                            </div>
+                                            <div class="form-group col mb-0">
+                                                <label for="Marca ">Marca</label>
+                                                <input type="text " class="form-control " name="Marca" placeholder="Marca del producto: " required="true ">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row mb-0">
+                                            <div class="form-group col mb-0">
+                                                <label for="Unid_Medida">Unidad de Medida</label>
+                                                <select name="Unid_Medida" id="Unid_Medida" class="select-css">
+                                                    <option value="Kilogramos" selected>kilogramos</option>
+                                                    <option value="Mililitros">Mililitros</option>
+                                                    <option value="Unidades" >Unidades</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group col mb-0">
+                                                <label for="Cantidad ">Cantidad</label>
+                                                <input type="text " class="form-control " name="Cantidad" placeholder="¿Cantidad que deseas ingresar? " required="true ">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row mb-0">
+                                            <!-- Fecha de ingreso (este dato se igresa automaticamente)
+                                            <div class="form-group col">
+                                                <label for="Fecha_de_Ingreso">Fecha de Ingreso</label>
+                                                <input type="date" class="form-control " name="Fecha_de_Ingreso" required="true">
+                                            </div-->
+                                            <div class="form-group col mb-0">
+                                                <label for="Fecha_de_Vencimiento">Fecha de Vencimiento</label>
+                                                <input type="date" class="form-control " name="Fecha_de_Vencimiento" required="true">
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer mb-0">
+                                            <button type="button" class="btn btn-danger " data-dismiss="modal">Cancelar</button>
+                                            <button type="submit" class="btn btn-primary">Crear Entrada</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="espacio-medio "></div>
+
+            <!-- Buscador de Inventario-->
+            <div id="espacio-medio "></div>
+            <nav class="navbar navbar-dark bg-dark ">
+                <div class="container-fluid ">
+                    <div>
+                        <h4 style="color: white; ">Inventario</h4>
+                    </div>
+                    <form class="d-flex ">
+                        <input class="form-control me-2 " type="search " placeholder="Buscar un producto " aria-label="Search ">
+                        <button class="btn btn-outline-light " type="submit ">Buscar</button>
+                    </form>
+                </div>
+            </nav>
+            <div id="espacio-medio "></div>
+
+            <!-- listado de Productos del Inventario-->
+            <div id="tabla-inventario ">
+                <table class="table table-striped container-fluid ">
+                    <thead style="background-color: rgb(0, 0, 0); color: cornsilk; ">
+                        <tr>
+                            <th scope="col ">ID_Ingred </th>
+                            <th scope="col ">Nombre </th>
+                            <th scope="col ">Marca</th>
+                            <th scope="col ">Und. Medida</th>
+                            <th scope="col ">Cantidad</th>
+                            <th scope="col ">Fecha de Ingreso</th>
+                            <th scope="col ">Fecha de Vencimiento </th>
+                            <th scope="col ">Actualizar Entrada</th>
+                            <th scope="col ">Borrar </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% for (let i = 0; i < inventario.length; i++) { %>
+                            <tr>
+                                <th scope="row ">
+                                    <%= inventario[i].ID_Ingrediente %>
+                                </th>
+                                <td>
+                                    <%= inventario[i].Nombre_Producto %>
+                                </td>
+                                <td>
+                                    <%= inventario[i].Marca %>
+                                </td>
+                                <td>
+                                    <%= inventario[i].Unid_Medida %>
+                                </td>
+                                <td>
+                                    <%= inventario[i].Cantidad %>
+                                </td>
+                                <td>
+                                    <%= inventario[i].Fecha_de_Ingreso.toLocaleString('es-CO',{year:'numeric', month:'2-digit', day:'2-digit'}) %>
+                                </td>
+                                <td>
+                                    <%= inventario[i].Fecha_de_Vencimiento.toLocaleString('es-CO',{year:'numeric', month:'2-digit', day:'2-digit'})  %>
+                                </td>
+                                <td>
+                                    <!-- Boton para Actualizar un producto-->
+                                    <!-- Button trigger modal -->
+                                    <div class="py-1 container-fluid col">
+                                        <div id="botones-mod-1" class="d-flex justify-content-center">
+                                            <!-- Boton para Crear un producto-->
+                                            <!-- VENTANA SEGUNDARIA-->
+                                            <a href="inventario/editarInvt/<%= inventario[i].ID_Ingrediente%>" class="btn btn-primary">Actualizar</a>
+
+                                            <!-- Button trigger modal --
+                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ACTUALIZAR<%= inventario.ID_Producto %>" data-bs-whatever="@fat">Actualizar Entrada</button>
+                                            -->
+                                            <!-- Modal -->
+                                            <!-- si hay datos en el inventario --
+                                            <% if(inventario) { %>
+                                                <div class="modal fade" id="ACTUALIZAR<%= inventario.ID_Producto %>" tabindex="-1" aria-labelledby="ACTUALIZAR" aria-hidden="true">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="ACTUALIZAR">Actualizar Entrada</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                            </div>
+                                                            <div class="modal-body" style="background-color:rgb(160, 204, 253);">
+                                                                <form action="/inventario/<%= inventario[i].ID_Producto %>" method="POST" class="form-group container-fluid">
+                                                                    <div class="form-group row">
+                                                                        <div class="form-group">
+                                                                            <input id="ID_Producto" value="<%= inventario.ID_Producto %>" hidden>
+                                                                        </div>
+                                                                        <div class="form-group col">
+                                                                            <label for="Nombre_Producto">Nombre</label>
+                                                                            <input type="text" value="<%= inventario.Nombre_Producto %>" class="form-control" name="Nombre_Producto" disabled>
+                                                                        </div>
+                                                                        <div class="form-group col">
+                                                                            <label for="Marca">Marca</label>
+                                                                            <input type="text" value="<%= inventario.Marca %>" class="form-control" name="Marca" disabled>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group ">
+                                                                        <label for="Cantidad ">Cantidad</label>
+                                                                        <input type="text" value="<%= inventario.Cantidad %>" class="form-control" name="Cantidad" required="true">
+                                                                    </div>
+                                                                    <div class="form-group row">
+                                                                        <div class="form-group col">
+                                                                            <label for="Fecha_de_Ingreso">Fecha de Ingreso</label>
+                                                                            <input type="datetime-local" value="<%= inventario.Fecha_de_Ingreso %>" class="form-control" name="Fecha_de_Ingreso" required="true">
+                                                                        </div>
+                                                                        <div class="form-group col">
+                                                                            <label for="Fecha_de_Vencimiento">Fecha de Vencimiento</label>
+                                                                            <input type="datetime-local" value="<%= inventario.Fecha_de_Vencimiento %>" class="form-control" name="Fecha_de_Vencimiento" required="true">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-danger " data-dismiss="modal">Cerrar</button>
+                                                                        <button type="submit" class="btn btn-primary">Actualizar Entrada</button>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <% } %>
+                                                 -->
+                                        </div>
+                                    </div>
+                                </td>
+                                <!--boton para borrar producto -->
+                                <td>
+                                    <!-- Button trigger modal -->
+                                    <a href="inventario/borrarInvt/<%= inventario[i].ID_Ingrediente %>" type="button" class="btn btn-danger">X</a>
+                                    <!--
+                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#DELETE_ENTRADA">Borrar </button>
+                                -->
+                                    <!-- Modal --
+                                <% if(inventario) { %>
+                                    <div class="modal fade" id="DELETE_ENTRADA" name="DELETE_ENTRADA" tabindex="-1" role="dialog" aria-labelledby="DELETE_ENTRADA" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title text-center text-danger " id="DELETE_ENTRADA" name="DELETE_ENTRADA">ALVERTENCIA</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                     </button>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input id="ID_Producto" value="<%= inventario[i].ID_Producto %>" hidden>
+                                                </div>
+                                                <div class="modal-body text-center">
+                                                    ¿Estas seguro de borrrar la entrada
+                                                    <h3>
+                                                        <%= inventario[i].ID_Producto %>
+                                                    </h3>
+                                                    de forma permanente?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                                                    <a href="inventario/borrarInvt/<%= inventario[i].ID_Producto %>" class="btn btn-primary">Borrar Entrada</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <% } %>-->
+
+                                </td>
+                            </tr>
+                            <% } %>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- SWEET ALERT 2
+        <script src="/resources/js/sweetalert2.all.min.js"></script>
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>-->
+            <% if(typeof alert != "undefined") {%>
+                <script>
+                    Swal.fire({
+                        title: '<%= alertTitle %>',
+                        text: '<%= alertMessage %>',
+                        icon: '<%= alertIcon %>',
+                        showConfirmButton: '<%= showConfirmButton %>',
+                        timer: false
+                    }).then(() => {
+                        window.location = '/<%=ruta %>'
+                    })
+                </script>
+                <% } %>
+
+    </body>
+
+    </html>

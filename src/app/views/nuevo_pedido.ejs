@@ -1,0 +1,182 @@
+<%- include("../views/head_html") -%>
+
+    <body>
+        <!--menu de navegación-->
+        <%- include("../views/menu") -%>
+
+            <!--titulo pagina 1-->
+            <div class="d-flex justify-content-center container-fluid">
+                <h3 style="background: rgb(255, 255, 255)">Área de Pedidos</h3>
+            </div>
+            <div id="espacio-medio"></div>
+
+            <!--titulo de función-->
+            <div class="container" id="nuevo-pedido">
+                <h4>Nuevo Pedido</h4>
+            </div>
+            <div id="espacio-medio"></div>
+
+            <!--formulario de pedido-->
+            <div class="container-fluid">
+                <div class="modal-body">
+                    <form action="nuevo_pedido" method="POST" class="form-group container-fluid " style="background: rgb(255, 255, 255);">
+                        <div id="espacio-medio-color-verde" class="d-grid gap-2">
+                            <h6>Información del Cliente</h6>
+                        </div>
+
+                        <div class="form-group row mb-0 ">
+                            <!--Nombre-->
+                            <div class="form-group col mb-0">
+                                <label for="Nombre_Cliente">Nombre de Cliente</label>
+                                <input type="text" class="form-control" name="Nombre_Cliente" placeholder="Ingrece el nombre aquí:" required="true" autofocus>
+                            </div>
+                            <!--Apellidos-->
+                            <div class="form-group col mb-0">
+                                <label for="Apellidos">Apellidos</label>
+                                <input type="text" class="form-control" name="Apellidos" placeholder="Ingrece los apellidos aquí:" required="true">
+                            </div>
+                        </div>
+
+                        <div class="form-group row mb-0 ">
+                            <!--Cedula de indentidad-->
+                            <div class="form-group col mb-0">
+                                <label for="ID_Cliente">Documento de identidad</label>
+                                <input type="text" class="form-control" name="ID_Cliente" placeholder="Ingrece aquí el numero de identidad:" required="true">
+                            </div>
+                            <!--correo-->
+                            <div class="form-group col mb-0">
+                                <label for="Correo">Correo electronico</label>
+                                <input type="email" class="form-control" name="Correo" aria-describedby="emailHelp" placeholder="Escriba el email aquí:" required="true">
+                            </div>
+                            <!--celular-->
+                            <div class="form-group col mb-0">
+                                <label for="Celular">Número celular/telefónico</label>
+                                <input type="text" class="form-control" name="Celular" placeholder="Escriba el email aquí:" required="true">
+                            </div>
+                        </div>
+
+                        <div class="form-group row mb-0">
+                            <!--Ciudad-->
+                            <div class="form-group col mb-0">
+                                <label for="Ciudad">Ciudad o Municipio</label>
+                                <input type="text" class="form-control" name="Ciudad" placeholder="Escriba aquí la ubicación del cliente:" required="true">
+                            </div>
+                            <!--Dirección-->
+                            <div class="form-group col mb-0 ">
+                                <label for="Dirección">Dirección</label>
+                                <input type="text" class="form-control" name="Dirección" placeholder="Escriba aquí la dirección:" required="true">
+                            </div>
+                        </div>
+
+                        <div id="espacio-medio-color-verde" class="d-grid gap-2">
+                            <h6>Información del pedido</h6>
+                        </div>
+
+                        <!--INFORMACION DEL PEDIDO -->
+                        <p></p>
+                        <div class="form-group container-fluid justify-content-center" style="background: rgba(47, 250, 138, 0.541);">
+                            <!-- Fecha del peido(este dato se igresa automaticamente)
+                                <div class="form-group col ">
+                                    <label for="Fecha_de_Pedido">Fecha de encargo</label>
+                                    <input type="datetime-local" name="Fecha_de_Pedido">
+                                </div>-->
+                            <div class="form-group  justify-center">
+                                <label for="Fecha_de_Entrega">Fecha de entrega del pedido  </label>
+                                <input type="date" name="Fecha_de_Entrega">
+                            </div>
+                        </div>
+
+                        <!-- seleccionar producto-->
+                        <div class="form-group container-fluid ">
+                            <p id="seleccion-pedido">Seleccione uno o varios de los siguientes productos deacuerdo al pedido del cliente</p>
+                            <!-- titulo 1.pastel relleno sensilo -->
+                            <div class="form-group row mb-0 mb-0">
+                                <div id="productos" class="form-control">
+                                    <h6>1. Pastel de relleno sencillo</h6>
+                                </div>
+                                <!-- opcon 1-->
+                                <div class="form-group col">
+                                    <label for="Past_Sen_1">1. Guayaba</label>
+                                    <input type="number" class="form-control" name="Past_Sen_1" placeholder="Ingrece el # de unidades">
+                                </div>
+                                <!-- opcion 2 -->
+                                <div class="form-group col">
+                                    <label for="Past_Sen_2">2. Arequipe</label>
+                                    <input type="number" class="form-control" name="Past_Sen_2" placeholder="Ingrece el # de unidades">
+                                </div>
+                                <!-- opcion 3 -->
+                                <div class="form-group col">
+                                    <label for="Past_Sen_3">3. Queso</label>
+                                    <input type="number" class="form-control" name="Past_Sen_3" placeholder="Ingrece el # de unidades">
+                                </div>
+                            </div>
+                            <!-- titulo 2.pastel relleno doble -->
+                            <div id="productos" class="form-control">
+                                <h6>2. Pastel de relleno doble</h6>
+                            </div>
+                            <div class="form-group row mb-0 mb-0">
+                                <!-- opcion 1 -->
+                                <div class="form-group col">
+                                    <label for="Past_Dob_1">1. Guayaba y queso</label>
+                                    <input type="number" class="form-control" name="Past_Dob_1" placeholder="Ingrece el # de unidades">
+                                </div>
+                                <!-- opcion 2 -->
+                                <div class="form-group col">
+                                    <label for="Past_Dob_2">2. Arequipe y queso</label>
+                                    <input type="number" class="form-control" name="Past_Dob_2" placeholder="Ingrece el # de unidades">
+                                </div>
+                                <!-- opcion 3 -->
+                                <div class="form-group col">
+                                    <label for="Past_Dob_3">3. Tres quesos</label>
+                                    <input type="number" class="form-control" name="Past_Dob_3" placeholder="Ingrece el # de unidades">
+                                </div>
+                            </div>
+                            <!-- titulo. 3 Panes -->
+                            <div id="productos" class="form-control">
+                                <h6>3. Productos de Panaderia</h6>
+                            </div>
+                            <!-- opciones -->
+                            <div class="form-group row mb-0">
+                                <!-- pan 1 -->
+                                <div class="form-group col-6">
+                                    <lebel for="Pan_Queso">3. Pan con relleno de queso</lebel>
+                                    <input type="number" class="form-control" name="Pan_Queso" placeholder="Ingrece el # de unidades">
+                                </div>
+                                <!-- pan 2 -->
+                                <div class="form-group col-6 ">
+                                    <lebel for="Pan_Inte">4. Pan integral</lebel>
+                                    <input type="number" class="form-control" name="Pan_Inte" placeholder="Ingrece el # de unidades">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- ENVIAR -->
+                        <div id="espacio-medio-color-verde-2" class="justify-center">
+                            <div class="py-2 d-grid gap-2 col-3 mx-auto justify-center">
+                                <button type="submit" class="btn btn-primary ">Registrar el Nuevo Pedido</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- SWEET ALERT 2 -->
+            <% if(typeof alert != "undefined") {%>
+                <script>
+                    Swal.fire({
+                        title: '<%= alertTitle %>',
+                        text: '<%= alertMessage %>',
+                        icon: '<%= alertIcon %>',
+                        showConfirmButton: '<%= showConfirmButton %>',
+                        timer: false
+                    }).then(() => {
+                        window.location = '/<%=ruta %>'
+                    })
+                </script>
+                <% } %>
+
+                    <div id="espacio-blanco "></div>
+                    <div id="espacio-medio "></div>
+
+    </body>
+
+    </html>

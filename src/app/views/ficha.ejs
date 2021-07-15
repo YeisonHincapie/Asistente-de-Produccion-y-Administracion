@@ -1,0 +1,157 @@
+<%- include("../views/head_html") -%>
+
+    <body>
+        <!--menu de navegación-->
+        <%- include("../views/menu") -%>
+
+            <!--titulo pagina 1-->
+            <div class="d-flex justify-content-center container-fluid">
+                <h3 style="background: rgb(255, 255, 255)">Área de Producción</h3>
+                <!--boton 2.1 de sub modulo-->
+            </div>
+            <div id="espacio-medio"></div>
+
+            <!-- Titulo tabla -->
+            <div id="espacio-medio "></div>
+            <nav class="navbar navbar-dark bg-dark ">
+                <div class="container-fluid ">
+                    <div>
+                        <h4 style="color: white; ">Ficha de Producción</h4>
+                    </div>
+                </div>
+            </nav>
+            <div id="espacio-medio "></div>
+
+            <!-- listado de Productos para producir-->
+            <div id="tabla-pedidos ">
+                <table class="table table-striped container-fluid ">
+                    <thead style="background-color: rgb(0, 0, 0); color: cornsilk; ">
+                        <tr>
+                            <th scope="col ">ID Ficha </th>
+                            <th scope="col ">Fecha de Entrega </th>
+                            <th scope="col ">Past_S1 </th>
+                            <th scope="col ">Past_S2</th>
+                            <th scope="col ">Past_S3</th>
+                            <th scope="col ">Past_D1</th>
+                            <th scope="col ">Past_D2</th>
+                            <th scope="col ">Past_D3 </th>
+                            <th scope="col ">PanQue</th>
+                            <th scope="col ">PanInt </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% for (let i = 0; i < produccion.length; i++) { %>
+                            <tr>
+                                <th scope="row ">
+                                    <%= produccion[i].ID_Ficha %>
+                                </th>
+                                <th>
+                                    <%= produccion[i].Fecha_de_Entrega.toLocaleString('es-CO',{year:'numeric', month:'2-digit', day:'2-digit'}) %>
+                                </th>
+                                <td>
+                                    <%= produccion[i].Past_Sen_1 %>
+                                </td>
+                                <td>
+                                    <%= produccion[i].Past_Sen_2 %>
+                                </td>
+                                <td>
+                                    <%= produccion[i].Past_Sen_3 %>
+                                </td>
+                                <td>
+                                    <%= produccion[i].Past_Dob_1 %>
+                                </td>
+                                <td>
+                                    <%= produccion[i].Past_Dob_2 %>
+                                </td>
+                                <td>
+                                    <%= produccion[i].Past_Dob_3 %>
+                                </td>
+                                <td>
+                                    <%= produccion[i].Pan_Queso %>
+                                </td>
+                                <td>
+                                    <%= produccion[i].Pan_Int %>
+                                </td>
+                            </tr>
+                            <% } %>
+                    </tbody>
+                </table>
+            </div>
+
+            <% for (let i = 0; i < produccion.length; i++) { %>
+                <a href="produccion/ficha/terminado/<%= produccion[i].Fecha_de_Entrega %>" type="button" class="btn btn-success">Pedido Terminado</a>
+                <% } %>
+
+                    <div class="container-fluid px-5">
+                        <div class="container-fluid px-5">
+                            <div class="container-fluid px-5">
+                                <div class="container-fluid px-5">
+                                    <!-- Titulo tabla-->
+                                    <div id="espacio-medio "></div>
+                                    <nav class="navbar navbar-dark bg-dark ">
+                                        <div class="container-fluid ">
+                                            <div>
+                                                <h4 style="color: white; ">Fichas de Producción Existentes</h4>
+                                            </div>
+                                        </div>
+                                    </nav>
+                                    <div id="espacio-medio "></div>
+                                    <!-- listado de Productos del Inventario-->
+                                    <div id="tabla-usuarios">
+                                        <table class="table table-striped container-fluid ">
+                                            <thead style="background-color: rgb(0, 0, 0); color: cornsilk; ">
+                                                <tr>
+                                                    <th scope="col ">Codigo de Ficha </th>
+                                                    <th scope="col ">Fecha de Producción </th>
+                                                    <th scope="col ">Fecha de Entrega </th>
+                                                    <th scope="col ">Ficha de Producción</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <% for (let i = 0; i < produccion.length; i++) { %>
+                                                    <tr>
+                                                        <th scope="row ">
+                                                            <%= produccion[i].ID_Ficha  %>
+                                                        </th>
+                                                        <th>
+                                                            <%= produccion[i].Fecha_de_Produccion.toLocaleString('es-CO',{year:'numeric', month:'2-digit', day:'2-digit'}) %>
+                                                        </th>
+                                                        <td>
+                                                            <%= produccion[i].Fecha_de_Entrega.toLocaleString('es-CO',{year:'numeric', month:'2-digit', day:'2-digit'}) %>
+                                                        </td>
+                                                        <td>
+                                                            <!-- Boton para ver la ficha-->
+                                                            <div class="py-1 container-fluid col ">
+                                                                <div id="botones-mod-1" class="d-flex justify-content-center">
+                                                                    <!-- VENTANA SEGUNDARIA-->
+                                                                    <a href="produccion/ficha/<%= produccion[i].ID_Ficha %>" class="btn btn-primary ">Abrir</a>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <% } %>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--SWEET ALERT 2-->
+                    <% if(typeof alert != "undefined") {%>
+                        <script>
+                            Swal.fire({
+                                title: '<%= alertTitle %>',
+                                text: '<%= alertMessage %>',
+                                icon: '<%= alertIcon %>',
+                                showConfirmButton: '<%= showConfirmButton %>',
+                                timer: false
+                            }).then(() => {
+                                window.location = '/<%= ruta %>'
+                            })
+                        </script>
+                        <% } %>
+    </body>
+
+    </html>

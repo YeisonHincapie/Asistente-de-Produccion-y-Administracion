@@ -1,0 +1,49 @@
+<!--menu de navegación encabezado-->
+<div>
+    <header>
+        <div class="header-group row">
+            <div class="d-flex justify-content-center container-fluid col">
+                <h2 id="nombre-programa">Asistente de Produción y Administración</h2>
+                <!--el nombre del programa=> debe aparecer en todad las paginas-->
+            </div>
+            <div class="pr-3 py-2">
+                <button class=" btn btn-danger float-right col btn-sm " data-toggle="modal" data-target="#cerrar_sesion"> Cerrar Sesión </button>
+            </div>
+            <!--ventana emergente modal-->
+            <div class="modal fade" id="cerrar_sesion" tabindex="-1" role="dialog" aria-labelledby="cerrar_sesionLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="cerrar_sesionLabel" style="color:red;">ALVERTENCIA</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                        </div>
+                        <div class="modal-body mx-auto">
+                            ¿Esta seguro de Cerrar su Sesión de USUARIO?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                            <a type="button" href=" /cerrar_sesion" class="btn btn-primary">Cerrar Sesión</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <nav id="menu" class="navbar navbar-expand-sm navbar-dark" role="navigation">
+        <!--menu-->
+        <div class="container-fluid">
+            <a class="navbar-brand" href="SAYFRE">
+                <!--boton 1 (imagen LOGO empresa)-->
+                <h2>SAYFRE</h2>
+            </a>
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="/SAYFRE">      Inicio      </a></li>
+                <li class="nav-item"><a class="nav-link" href="/pedidos"> Área de Pedidos  </a></li>
+                <li class="nav-item"><a class="nav-link" href="/produccion"> Área de Producción </a></li>
+                <li class="nav-item"><a class="nav-link" href="/inventario"> Área de Inventario </a></li>
+            </ul>
+        </div>
+    </nav>
+</div>

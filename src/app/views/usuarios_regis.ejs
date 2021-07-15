@@ -1,0 +1,50 @@
+<%- include("../views/head_html") -%>
+
+    <body>
+
+        <div class="d-flex mx-auto justify-content-center ">
+            <div class="dialog col-lg-4 col-md-4 " role="document">
+                <div class="py-1 container-fluid  mx-auto">
+                    <div class="card mx-auto">
+                        <div class="modal-header">
+                            <h5 class="modal-title mx-auto" id="login">Nuevo Usuario</h5>
+                        </div>
+                        <div class="modal-body mx-auto" style="background-color:rgb(160, 204, 253);">
+                            <form action="nuevo" method="POST" class="form-group container-fluid mb-0">
+                                <div class="form-group mx-auto mb-0">
+                                    <label for="Rol">Rol del Usuario</label>
+                                    <input type="text " class="form-control" name="Rol" required="true ">
+                                </div>
+                                <div class="form-group mx-auto mb-0">
+                                    <label for="pass">Contraseña<label>
+                                        <input type="text" class="form-control" name="pass" required="true ">
+                                    </div>
+                                <div class="modal-footer  mb-0">
+                                    <a type="button" href="/usuarios_sistema" class="btn btn-danger " data-dismiss="modal">Regresar</a>
+                                    <button type="submit" class="btn btn-primary">Crear Nuevo Usuario</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--SWEET ALERT 2-->
+        <% if(typeof alert != "undefined") {%>
+            <script>
+                Swal.fire({
+                    title: '<%= alertTitle %>',
+                    text: '<%= alertMessage %>',
+                    icon: '<%= alertIcon %>',
+                    showConfirmButton: '<%= showConfirmButton %>',
+                    timer: false
+                }).then(() => {
+                    window.location = '/<%= ruta %>'
+                })
+            </script>
+            <% } %>
+
+    </body>
+
+    </html>

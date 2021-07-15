@@ -1,0 +1,23 @@
+<%- include("../views/head_html") -%>
+
+
+    <body>
+
+        <!--SWEET ALERT 2-->
+        <% if(typeof alert != "undefined") {%>
+            <script>
+                Swal.fire({
+                    title: '<%= alertTitle %>',
+                    text: '<%= alertMessage %>',
+                    icon: '<%= alertIcon %>',
+                    showConfirmButton: '<%= showConfirmButton %>',
+                    timer: false
+                }).then(() => {
+                    window.location = '/<%= ruta %>'
+                })
+            </script>
+            <% } %>
+
+    </body>
+
+    </html>

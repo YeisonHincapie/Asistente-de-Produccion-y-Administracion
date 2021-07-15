@@ -1,0 +1,78 @@
+<%- include("../views/head_html") -%>
+
+    <body>
+        <!--menu encabezado-->
+        <%- include("../views/menu") -%>
+
+            <!--titulo pagina 1-->
+            <div class="d-flex justify-content-center container-fluid">
+                <h3 style="background: rgb(255, 255, 255)">Área de Pedidos</h3>
+                <!--boton 2.1 de sub modulo-->
+            </div>
+            <div id="espacio-medio"></div>
+
+            <!-- Buscador de Inventario-->
+            <div id="espacio-medio "></div>
+            <nav class="navbar navbar-dark bg-dark ">
+                <div class="container-fluid">
+                    <div>
+                        <h4 style="color: white; ">Para Entregar</h4>
+                    </div>
+                    <form class="d-flex ">
+                        <input class="form-control me-2 " type="search " placeholder="Buscar un producto " aria-label="Search ">
+                        <button class="btn btn-outline-light " type="submit ">Buscar</button>
+                    </form>
+                </div>
+            </nav>
+            <div id="espacio-medio "></div>
+
+            <!--tabla de pedidos para entregar-->
+            <table class="table table-striped">
+                <thead style="background-color: rgb(0, 0, 0); color: cornsilk;">
+                    <tr>
+                        <th scope="col">Fecha de entrega</th>
+                        <th scope="col">Estado </th>
+                        <th scope="col">ID Pedido </th>
+                        <th scope="col">ID Cliente</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Apellidos</th>
+                        <th scope="col">Ver Remisión </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for (let i = 0; i < para_entregar.length; i++) { %>
+                        <tr>
+                            <th scope="row ">
+                                <%= para_entregar[i].Fecha_de_Entrega.toLocaleString('es-CO',{year:'numeric', month:'2-digit', day:'2-digit'}) %>
+                            </th>
+                            <td>
+                                <%= para_entregar[i].Estado %>
+                            </td>
+                            <td>
+                                <%= para_entregar[i].ID_Pedido %>
+                            </td>
+                            <td>
+                                <%= para_entregar[i].ID_Cliente %>
+                            </td>
+                            <td>
+                                <%= para_entregar[i].Nombre_Cliente %>
+                            </td>
+                            <td>
+                                <%= para_entregar[i].Apellidos %>
+                            </td>
+                            <td>
+                                <div class="py-1 container-fluid col">
+                                    <div id="botones-mod-1" class="d-flex justify-content-center">
+                                        <!-- VENTANA SEGUNDARIA-->
+                                        <a href="para_entregar/remision/<%= para_entregar[i].ID_Pedido %>" class="btn btn-primary">Remisión</a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <% } %>
+                </tbody>
+            </table>
+
+    </body>
+
+    </html>

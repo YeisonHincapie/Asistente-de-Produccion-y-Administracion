@@ -1,0 +1,51 @@
+<%- include("../views/head_html") -%>
+
+    <body>
+
+        <% if(inventario) { %>
+
+            <div class="card-body  mx-5" role="document">
+                <div class="py-1 container-fluid">
+                    <div class="card">
+                        <div class="card-header sm">
+                            <h5 class="modal-title text-center text-danger " id="DELETE_ENTRADA" name="DELETE_ENTRADA">ALVERTENCIA</h5>
+                            <a href="/inventario" type="button" class="close">
+                                <span aria-hidden="true">&times;</span>
+                            </a>
+                        </div>
+                        <div class="form-group">
+                            <input id="ID_Producto" value="<%= inventario.ID_Producto %>" hidden>
+                        </div>
+                        <div class="modal-body text-center">
+                            ¿Estás seguro de borrar la entrada 
+                            <h3>
+                                con ID: <%= inventario.ID_Producto %>
+                            </h3>
+                            de forma permanente?
+                        </div>
+                        <div class="modal-footer">
+                            <a href="/inventario" type="button" class="btn btn-danger">Cancelar</a>
+                            <a href="/inventario/borrarInvt/borrar/<%= inventario.ID_Producto %>" class="btn btn-primary">Borrar Entrada</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <% } %>
+
+                <% if(typeof alert != "undefined") {%>
+                    <script>
+                        Swal.fire({
+                            title: '<%= alertTitle %>',
+                            text: '<%= alertMessage %>',
+                            icon: '<%= alertIcon %>',
+                            showConfirmButton: '<%= showConfirmButton %>',
+                            timer: false
+                        }).then(() => {
+                            window.location = '/<%=ruta %>'
+                        })
+                    </script>
+                    <% } %>
+    </body>
+
+    </html>

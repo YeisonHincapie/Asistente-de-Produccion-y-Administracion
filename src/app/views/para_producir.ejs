@@ -1,0 +1,112 @@
+<%- include("../views/head_html") -%>
+
+    <body>
+        <!--menu de navegación-->
+        <%- include("../views/menu") -%>
+
+            <!--titulo pagina 1-->
+            <div class="d-flex justify-content-center container-fluid">
+                <h3 style="background: rgb(255, 255, 255)">Área de Pedidos</h3>
+                <!--boton 2.1 de sub modulo-->
+            </div>
+            <div id="espacio-medio"></div>
+
+            <!-- Buscador de Pedidos para producir-->
+            <div id="espacio-medio "></div>
+            <nav class="navbar navbar-dark bg-dark ">
+                <div class="container-fluid ">
+                    <div>
+                        <h4 style="color: white; ">Pedidos para Producir</h4>
+                    </div>
+                    <form class="d-flex ">
+                        <input class="form-control me-2 " type="search " placeholder="Buscar un producto " aria-label="Search ">
+                        <button class="btn btn-outline-light " type="submit ">Buscar</button>
+                    </form>
+                </div>
+            </nav>
+            <div id="espacio-medio "></div>
+
+            <!--tabla de pedidos pendientes por producir-->
+            <table class="table table-striped">
+                <thead style="background-color: rgb(0, 0, 0); color: cornsilk;">
+                    <tr>
+                        <th scope="col">ID Ped</th>
+                        <th scope="col">ID cliente</th>
+                        <th scope="col">Fecha Pedido</th>
+                        <th scope="col">Fecha Entrega</th>
+                        <th scope="col">Past_S1 </th>
+                        <th scope="col">Past_S2 </th>
+                        <th scope="col">Past_S3 </th>
+                        <th scope="col">Past_D1 </th>
+                        <th scope="col">Past_D2 </th>
+                        <th scope="col">Past_D3 </th>
+                        <th scope="col">PanQue </th>
+                        <th scope="col">PanInt </th>
+                        <th scope="col">Editar Pedido </th>
+                        <th scope="col">Borrar Pedido </th>
+                    </tr>
+                </thead>
+                <tbody class="container-fluid ">
+                    <% for (let i = 0; i < pedidos.length; i++) { %>
+                        <tr>
+                            <th scope="row ">
+                                <%= pedidos[i].ID_Pedido %>
+                            </th>
+                            <td>
+                                <%= pedidos[i].ID_Cliente %>
+                            </td>
+                            <td>
+                                <%= pedidos[i].Fecha_de_Pedido.toLocaleString('es-CO',{year:'numeric', month:'2-digit', day:'2-digit'})  %>
+                            </td>
+                            <td>
+                                <%= pedidos[i].Fecha_de_Entrega.toLocaleString('es-CO',{year:'numeric', month:'2-digit', day:'2-digit'}) %>
+                            </td>
+                            <td>
+                                <%= pedidos[i].Past_Sen_1 %>
+                            </td>
+                            <td>
+                                <%= pedidos[i].Past_Sen_2 %>
+                            </td>
+                            <td>
+                                <%= pedidos[i].Past_Sen_3 %>
+                            </td>
+                            <td>
+                                <%= pedidos[i].Past_Dob_1 %>
+                            </td>
+                            <td>
+                                <%= pedidos[i].Past_Dob_2 %>
+                            </td>
+                            <td>
+                                <%= pedidos[i].Past_Dob_3 %>
+                            </td>
+                            <td>
+                                <%= pedidos[i].Pan_Queso %>
+                            </td>
+                            <td>
+                                <%= pedidos[i].Pan_Inte %>
+                            </td>
+                            <td>
+                                <div class="py-1 container-fluid col">
+                                    <div id="botones-mod-1" class="d-flex justify-content-center">
+                                        <!-- VENTANA SEGUNDARIA-->
+                                        <a href="para_producir/editarPed/<%= pedidos[i].ID_Pedido %>" class="btn btn-primary">Editar</a>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <!-- VENTANA SEGUNDARIA-->
+                                <div class="py-1 container-fluid col">
+                                    <div id="botones-mod-1" class="d-flex justify-content-center">
+                                        <a href="para_producir/borrarPed/<%= pedidos[i].ID_Pedido %>" class="btn btn-danger">X</a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <% } %>
+                </tbody>
+            </table>
+
+
+    </body>
+
+    </html>

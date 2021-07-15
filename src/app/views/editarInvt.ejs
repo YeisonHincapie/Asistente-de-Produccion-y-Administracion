@@ -1,0 +1,69 @@
+<%- include("../views/head_html") -%>
+
+    <body>
+        <% if(inventario) { %>
+            <div class="dialog  mx-5" role="document">
+                <div class="py-1 container-fluid">
+                    <div class="card">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="Actualizar">Actualizar Entrada</h5>
+                            <a href="/inventario" type="button" class="close">
+                                <span aria-hidden="true">&times;</span>
+                            </a>
+                        </div>
+                        <div class="modal-body" style="background-color:rgb(160, 204, 253);">
+                            <form action="editar/<%= inventario.ID_Producto %>" method="POST" class="form-group container-fluid mb-0">
+                                <div class="form-group row mb-0">
+                                    <div class="form-group">
+                                        <input id="ID_Producto" value="<%= inventario.ID_Producto %>" hidden>
+                                    </div>
+                                    <div class="form-group col mb-0">
+                                        <label for="Nombre_Producto">Nombre</label>
+                                        <input type="text" value="<%= inventario.Nombre_Producto %>" class="form-control" name="Nombre_Producto" disabled>
+                                    </div>
+                                    <div class="form-group col mb-0">
+                                        <label for="Marca">Marca</label>
+                                        <input type="text" value="<%= inventario.Marca %>" class="form-control" name="Marca" disabled>
+                                    </div>
+                                </div>
+                                <div class="form-group ">
+                                    <label for="Cantidad ">Cantidad</label>
+                                    <input type="text" value="<%= inventario.Cantidad %>" class="form-control" name="Cantidad" required="true">
+                                </div>
+                                <div class="form-group row mb-0">
+                                    <div class="form-group col mb-0">
+                                        <label for="Fecha_de_Ingreso">Fecha de Ingreso</label>
+                                        <input type="date" value="<%= inventario.Fecha_de_Ingreso %>" class="form-control" name="Fecha_de_Ingreso" required="true">
+                                    </div>
+                                    <div class="form-group col mb-0">
+                                        <label for="Fecha_de_Vencimiento">Fecha de Vencimiento</label>
+                                        <input type="date" value="<%= inventario.Fecha_de_Vencimiento %>" class="form-control" name="Fecha_de_Vencimiento" required="true">
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <a href="/inventario" class="btn btn-danger " data-dismiss="modal">Cerrar</a>
+                                    <button type="submit" class="btn btn-primary">Actualizar Entrada</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <% } %>
+
+                    <% if(typeof alert != "undefined") {%>
+                        <script>
+                            Swal.fire({
+                                title: '<%= alertTitle %>',
+                                text: '<%= alertMessage %>',
+                                icon: '<%= alertIcon %>',
+                                showConfirmButton: '<%= showConfirmButton %>',
+                                timer: false
+                            }).then(() => {
+                                window.location = '/<%=ruta %>'
+                            })
+                        </script>
+                        <% } %>
+
+    </body>
+
+    </html>

@@ -1,0 +1,165 @@
+<%- include("../views/head_html") -%>
+
+    <body>
+        <% if(para_entregar) { %>
+
+            <div class="dialog  mx-5" role="document">
+                <div class="py-1 container-fluid">
+                    <div class="card">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="Actualizar">Remisión de Entrega</h5>
+                            <a href="/pedidos/para_entregar" type="button" class="close">
+                                <span aria-hidden="true">&times;</span>
+                            </a>
+                        </div>
+                        <div class="modal-body" style="background-color:rgb(160, 204, 253);">
+                            <h5>Datos del cliente:</h5>
+                            <div class="form-group row mb-0">
+                                <div class="form-group col mb-0">
+                                    <label for="ID_Cliente">Documento de identidad</label>
+                                    <input type="text" class="form-control" name="ID_Cliente" value="<%= para_entregar.ID_Cliente %>" disabled>
+                                </div>
+                                <div class="form-group col mb-0">
+                                    <label for="Nombre_Cliente">Nombre</label>
+                                    <input type="text" class="form-control" name="Nombre_Cliente" value="<%= para_entregar.Nombre_Cliente %>" disabled>
+                                </div>
+                                <div class="form-group col mb-0">
+                                    <label for="Apellidos">Apellidos</label>
+                                    <input type="text" class="form-control" name="Apellidos" value="<%= para_entregar.Apellidos %>" disabled>
+                                </div>
+                            </div>
+                            <div class="form-group row mb-0">
+                                <div class="form-group col mb-0">
+                                    <label for="Celular">Número celular/telefónico</label>
+                                    <input type="number" class="form-control" name="Celular" value="<%= para_entregar.Celular %>" disabled>
+                                </div>
+                                <div class="form-group col mb-0">
+                                    <label for="Ciudad">Ciudad o Municipio</label>
+                                    <input type="text" class="form-control" name="Ciudad" value="<%= para_entregar.Ciudad %>" disabled>
+                                </div>
+                                <div class="form-group col mb-0">
+                                    <label for="Dirección">Dirección</label>
+                                    <input type="text" class="form-control" name="Dirección" value="<%= para_entregar.Dirección %>" disabled>
+                                </div>
+                            </div>
+
+                            <div class="modal-footer"></div>
+                            <div class="form-group row mb-0">
+                                <div class="form-group col mb-0">
+                                    <h5>Información del pedido</h5>
+                                </div>
+                                <div class="form-group col mb-0">
+                                    <label for="ID_Pedido">ID Pedido</label>
+                                    <input type="number" class="form-control" name="ID_Pedido" value="<%= para_entregar.ID_Pedido %>" disabled>
+                                </div>
+                                <div class="form-group col mb-0">
+                                    <label for="Fecha_de_Pedido">Fecha del Pedido</label>
+                                    <input type="date" class="form-control" name="Fecha_de_Pedido" value="<%= para_entregar.Fecha_de_Pedido %>" disabled>
+                                </div>
+                                <div class="form-group col mb-0">
+                                    <label for="Fecha_de_Entrega">Fecha de Entrega</label>
+                                    <input type="date" class="form-control" name="Fecha_de_Entrega" value="<%= para_entregar.Fecha_de_Entrega %>" disabled>
+                                </div>
+                            </div>
+
+                            <div class="modal-footer"></div>
+                            <div class="just">
+                                <h5 class="justific-">Productos del Pedido</h5>
+                            </div>
+                            <p></p>
+                            <div class="form-group row mb-0">
+                                <div class="form-group col mb-0">
+                                    <h6>Pasteles Sensillos</h6>
+                                </div>
+                                <div class="form-group col mb-0">
+                                    <label for="Past_Sen_1">Pastel de Guayaba</label>
+                                    <input type="number" class="form-control" name="Past_Sen_1" value="<%= para_entregar.Past_Sen_1 %>" disabled>
+                                </div>
+                                <div class="form-group col mb-0">
+                                    <label for="Past_Sen_2">Pastel de Arequipe</label>
+                                    <input type="number" class="form-control" name="Past_Sen_2" value="<%= para_entregar.Past_Sen_2 %>" disabled>
+                                </div>
+                                <div class="form-group col mb-0">
+                                    <label for="Past_Sen_3">Pastel de Queso</label>
+                                    <input type="number" class="form-control" name="Past_Sen_3" value="<%= para_entregar.Past_Sen_3 %>" disabled>
+                                </div>
+                            </div>
+                            <div class=" form-group row mb-0 ">
+                                <div class="form-group col mb-0">
+                                    <h6>Pasteles con Relleno Doble</h6>
+                                </div>
+                                <div class="form-group col mb-0 ">
+                                    <label for="Past_Dob_1 ">Pastel de Guayaba y Queso</label>
+                                    <input type="number " class="form-control " name="Past_Dob_1 " value="<%= para_entregar.Past_Dob_1 %>" disabled>
+                                </div>
+                                <div class="form-group col mb-0">
+                                    <label for="Past_Dob_2">Pastel de Arequipe y queso</label>
+                                    <input type="number" class="form-control" name="Past_Dob_2" value="<%= para_entregar.Past_Dob_2 %>" disabled>
+                                </div>
+                                <div class="form-group col mb-0">
+                                    <label for="Past_Dob_3">Pastel de Tres Quesos </label>
+                                    <input type="number" class="form-control" name="Past_Dob_3" value="<%= para_entregar.Past_Dob_3 %>" disabled>
+                                </div>
+                            </div>
+                            <div class="form-group row mb-0">
+                                <div class="form-group col mb-0">
+                                    <h6>Productos de Panaderia</h6>
+                                </div>
+                                <div class="form-group col mb-0">
+                                    <label for="Pan_Queso">Pan de Queso</label>
+                                    <input type="number" class="form-control" name="Pan_Queso" value="<%= para_entregar.Pan_Queso %>" disabled>
+                                </div>
+                                <div class="form-group col mb-0">
+                                    <label for="Pan_Inte">Pan Integral</label>
+                                    <input type="number" class="form-control" name="Pan_Inte" value="<%= para_entregar.Pan_Inte %>" disabled>
+                                </div>
+                                <div class="form-group col mb-0">
+                                </div>
+                            </div>
+
+                            <form action="editar/<%= para_entregar.ID_Pedido %>" method="POST" class="form-group container-fluid mb-0">
+                                <div class="modal-footer"></div>
+                                <div class="form-group row mb-0">
+
+                                    <div class="form-group mb-0 ">
+                                        <label for="Estado"><h5>Estado del Pedido</h5></label>
+                                    </div>
+                                    <div class="form-group mb-0 ">
+                                        <input type="text" class="form-control" name="Estado" value="<%= para_entregar.Estado %>" disabled>
+                                    </div>
+
+                                    <div class="form-group col mb-0">
+                                        <a name="Estado-boton" href="/pedidos/para_entregar/remision/editar/<%= para_entregar.ID_Pedido %>" class="btn btn-success" data-dismiss="modal" data-bs-toggle="popover">Registrar la Entrega del Pedido</a>
+                                        <p>De clic en este boton para cabiar el ESTADO del pedido a DESPACHADO</p>
+                                    </div>
+                                </div>
+
+                                <div class="modal-footer mb-0 ">
+                                    <a href="/pedidos/para_entregar" class="btn btn-danger" data-dismiss="modal">Regresar</a>
+                                    <a href="/pedidos/para_entregar/remision/imprimir" class="btn btn-primary" data-dismiss="modal">Imprimir Factura</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <% } %>
+
+                    <% if(typeof alert != "undefined") {%>
+                        <script>
+                            Swal.fire({
+                                title: '<%= alertTitle %>',
+                                text: '<%= alertMessage %>',
+                                icon: '<%= alertIcon %>',
+                                showConfirmButton: '<%= showConfirmButton %>',
+                                timer: false
+                            }).then(() => {
+                                window.location = '/<%=ruta %>'
+                            })
+                        </script>
+                        <% } %>
+
+
+    </body>
+
+    </html>

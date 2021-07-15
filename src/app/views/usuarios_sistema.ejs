@@ -1,0 +1,93 @@
+<%- include("../views/head_html") -%>
+
+    <body>
+        <!--menu de navegación-->
+        <%- include("../views/menu") -%>
+
+            <!--titulo pagina 1-->
+            <div class="d-flex justify-content-center container-fluid ">
+                <h3>Administrador del Sistema</h3>
+            </div>
+            <div id="espacio-medio"></div>
+
+            <!--boton para crar usuarios-->
+            <div class="d-flex justify-content-center">
+                <a href="/usuarios_sistema/nuevo" type="button" class="btn btn-success">Crear Nuevo Usuario</a>
+            </div>
+            <div class="container-fluid px-5">
+                <div class="container-fluid px-5">
+                    <div class="container-fluid px-5">
+                        <div class="container-fluid px-5">
+                            <!-- TITULO listado-->
+                            <div id="espacio-medio ">
+                                <nav class="navbar navbar-dark bg-dark ">
+                                    <div class="container-fluid">
+                                        <div>
+                                            <h4 style="color: white; ">Usuarios del Sistema</h4>
+                                        </div>
+                                    </div>
+                                </nav>
+                                <div id="espacio-medio "></div>
+
+                                <!-- listado de Productos del Inventario-->
+                                <div id="tabla-usuarios">
+                                    <table class="table table-striped container-fluid ">
+                                        <thead style="background-color: rgb(0, 0, 0); color: cornsilk; ">
+                                            <tr>
+                                                <th scope="col ">ID Usuario </th>
+                                                <th scope="col ">Rol del Usuario </th>
+                                                <th scope="col ">Editar</th>
+                                                <th scope="col ">Borrar</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <% for (let i = 0; i < usuarios.length; i++) { %>
+                                                <tr>
+                                                    <th scope="row ">
+                                                        <%= usuarios[i].ID_Usuario %>
+                                                    </th>
+                                                    <td>
+                                                        <%= usuarios[i].Rol %>
+                                                    </td>
+                                                    <td>
+                                                        <!-- Boton para editar usuario-->
+                                                        <div class="py-1 container-fluid col ">
+                                                            <div id="botones-mod-1" class="d-flex justify-content-center">
+                                                                <!-- VENTANA SEGUNDARIA-->
+                                                                <a href="usuarios_sistema/editar/<%= usuarios[i].ID_Usuario%>" class="btn btn-primary ">Editar</a>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <!--boton para borrar Usuario -->
+                                                    <td>
+                                                        <!-- VENTANA SEGUNDARIA-->
+                                                        <a href="usuarios_sistema/borrar/<%= usuarios[i].ID_Usuario %>" type="button" class="btn btn-danger">X</a>
+                                                    </td>
+                                                </tr>
+                                                <% } %>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SWEET ALERT 2-->
+                <% if(typeof alert != "undefined") {%>
+                    <script>
+                        Swal.fire({
+                            title: '<%= alertTitle %>',
+                            text: '<%= alertMessage %>',
+                            icon: '<%= alertIcon %>',
+                            showConfirmButton: '<%= showConfirmButton %>',
+                            timer: false
+                        }).then(() => {
+                            window.location = '/<%=ruta %>'
+                        })
+                    </script>
+                    <% } %>
+
+    </body>
+
+    </html>

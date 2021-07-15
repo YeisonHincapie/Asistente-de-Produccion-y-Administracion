@@ -1,0 +1,131 @@
+<%- include("../views/head_html") -%>
+
+    <body>
+        <!--menu de navegación-->
+        <%- include("../views/menu") -%>
+
+            <!--titulo pagina 1-->
+            <div class="d-flex justify-content-center container-fluid">
+                <h3 style="background: rgb(255, 255, 255)">Área de Producción</h3>
+                <!--boton 2.1 de sub modulo-->
+            </div>
+            <div id="espacio-medio"></div>
+
+            <div class="py-1 container-fluid col">
+                <div id="botones-mod-1" class="d-flex justify-content-center">
+                    <!-- Boton para Crear un producto-->
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#crear">
+                        Generar Ficha de Producción Nueva
+                    </button>
+
+                    <!-- Modal-- Crear NUEVA FICHA DE PRODUCCIÓN-->
+
+                    <div class="modal fade " id="crear" tabindex="-1" role="dialog" aria-labelledby="crear" aria-hidden="true">
+                        <div class="modal-dialog " role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="crear">Crear Nueva Entrada</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body " style="background-color:rgb(160, 204, 253);">
+                                    <form action="produccion" method="POST" class="form-group container-fluid mb-0">
+                                        <div class="form-group mb-0 mx-auto">
+                                            <label for="Fecha_de_Entrega" class=" d-flex mx-auto ">Ingrece la Fecha de Entrega de los productos:</label>
+                                            <input type="date" class="mx-auto" name="Fecha_de_Entrega" id="Fecha_de_Entrega" required>
+                                        </div>
+                                        <div class="form-group mb-0 mx-auto">
+                                            <label for="Fecha_de_Produccion" class=" d-flex mx-auto ">Ingrece la Fecha de Producción:</label>
+                                            <input type="date" class="mx-auto" name="Fecha_de_Produccion" id="Fecha_de_Produccion" required>
+                                        </div>
+
+                                        <div class="modal-footer">
+                                            <div class=" mx-auto ">
+                                                <button type="button" class="btn btn-danger " data-dismiss="modal">Cancelar</button>
+                                                <button type="submit" class="btn btn-primary">Generar</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container-fluid px-5">
+                <div class="container-fluid px-5">
+                    <div class="container-fluid px-5">
+                        <div class="container-fluid px-5">
+                            <!-- Titulo tabla-->
+                            <div id="espacio-medio "></div>
+                            <nav class="navbar navbar-dark bg-dark ">
+                                <div class="container-fluid ">
+                                    <div>
+                                        <h4 style="color: white; ">Fichas de Producción Existentes</h4>
+                                    </div>
+                                </div>
+                            </nav>
+                            <div id="espacio-medio "></div>
+                            <!-- listado de Productos del Inventario-->
+                            <div id="tabla-usuarios">
+                                <table class="table table-striped container-fluid ">
+                                    <thead style="background-color: rgb(0, 0, 0); color: cornsilk; ">
+                                        <tr>
+                                            <th scope="col ">Codigo de Ficha </th>
+                                            <th scope="col ">Fecha de Producción </th>
+                                            <th scope="col ">Fecha de Entrega </th>
+                                            <th scope="col ">Ficha de Producción</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% for (let i = 0; i < produccion.length; i++) { %>
+                                            <tr>
+                                                <th scope="row ">
+                                                    <%= produccion[i].ID_Ficha  %>
+                                                </th>
+                                                <th>
+                                                    <%= produccion[i].Fecha_de_Produccion.toLocaleString('es-CO',{year:'numeric', month:'2-digit', day:'2-digit'}) %>
+                                                </th>
+                                                <td>
+                                                    <%= produccion[i].Fecha_de_Entrega.toLocaleString('es-CO',{year:'numeric', month:'2-digit', day:'2-digit'}) %>
+                                                </td>
+                                                <td>
+                                                    <!-- Boton para ver la ficha-->
+                                                    <div class="py-1 container-fluid col ">
+                                                        <div id="botones-mod-1" class="d-flex justify-content-center">
+                                                            <!-- VENTANA SEGUNDARIA-->
+                                                            <a href="produccion/ficha/<%= produccion[i].ID_Ficha %>" class="btn btn-primary ">Abrir</a>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <% } %>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!--SWEET ALERT 2-->
+            <% if(typeof alert != "undefined") {%>
+                <script>
+                    Swal.fire({
+                        title: '<%= alertTitle %>',
+                        text: '<%= alertMessage %>',
+                        icon: '<%= alertIcon %>',
+                        showConfirmButton: '<%= showConfirmButton %>',
+                        timer: false
+                    }).then(() => {
+                        window.location = '/<%= ruta %>'
+                    })
+                </script>
+                <% } %>
+    </body>
+
+    </html>

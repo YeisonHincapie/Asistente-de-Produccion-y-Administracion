@@ -1,7 +1,7 @@
 {
     "name": "auxiliar_de_producio_y_administracion",
     "version": "1.0.0",
-    "description": "Programa auxiliar para la producción y administración del emprendimiento SAYFRE",
+    "description": "Es un programa aistente tipo CRUD para la producción y administración del emprendimiento SAYFRE",
     "main": "index.js",
     "scripts": {
         "start": "nodemon src/index.js",

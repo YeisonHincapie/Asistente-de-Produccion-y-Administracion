@@ -1,4 +1,4 @@
-<%- include("../views/head_html") -%>
+<%- include("../elements/head_html") -%>
 
     <body>
 
@@ -9,7 +9,7 @@
                     <div class="card">
                         <div class="card-header sm">
                             <h5 class="modal-title text-center text-danger " id="DELETE_ENTRADA" name="DELETE_ENTRADA">ALVERTENCIA</h5>
-                            <a href="/para_producir" type="button" class="close">
+                            <a href="/pedidos/para_producir" type="button" class="close">
                                 <span aria-hidden="true">&times;</span>
                             </a>
                         </div>
@@ -34,19 +34,8 @@
 
             <% } %>
 
-                <% if(typeof alert != "undefined") {%>
-                    <script>
-                        Swal.fire({
-                            title: '<%= alertTitle %>',
-                            text: '<%= alertMessage %>',
-                            icon: '<%= alertIcon %>',
-                            showConfirmButton: '<%= showConfirmButton %>',
-                            timer: false
-                        }).then(() => {
-                            window.location = '/<%=ruta %>'
-                        })
-                    </script>
-                    <% } %>
+                <!-- SWEET ALERT -->
+                <%- include("../elements/sweetalert2") -%>
     </body>
 
     </html>

@@ -1,0 +1,14 @@
+<% if(typeof alert != "undefined") {%>
+    <script>
+        Swal.fire({
+            title: '<%= alertTitle %>',
+            text: '<%= alertMessage %>',
+            icon: '<%= alertIcon %>',
+            showConfirmButton: '<%= showConfirmButton %>',
+            confirmButtonText: 'Entiendo',
+            timer: false
+        }).then(() => {
+            window.location = '/<%=ruta %>'
+        })
+    </script>
+    <% } %>

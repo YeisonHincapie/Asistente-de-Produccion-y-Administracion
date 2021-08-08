@@ -1,15 +1,6 @@
 //modulo para conectarnos a  la base de datos
 const mysql = require('mysql');
 
-/*/configurar credenciales de ingreso
-module.exports = () => {
-    return mysql.createConnection({
-        host: "localhost",
-        user: "root",
-        database: "sayfre"
-    })
-}*/
-
 const Connection = mysql.createConnection({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,

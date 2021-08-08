@@ -1,8 +1,8 @@
-<%- include("../views/head_html") -%>
+<%- include("../elements/head_html") -%>
 
     <body>
         <!--menu de navegación-->
-        <%- include("../views/menu") -%>
+        <%- include("../elements/menu", {Rol:Rol}) -%>
 
             <!--titulo pagina 1-->
             <div class="d-flex justify-content-center container-fluid">
@@ -24,53 +24,37 @@
 
             <!-- listado de Productos para producir-->
             <div id="tabla-pedidos ">
-                <table class="table table-striped container-fluid ">
+                <table class="table table-striped container-fluid table-bordered">
                     <thead style="background-color: rgb(0, 0, 0); color: cornsilk; ">
                         <tr>
                             <th scope="col ">ID Ficha </th>
                             <th scope="col ">Fecha de Entrega </th>
-                            <th scope="col ">Past_S1 </th>
-                            <th scope="col ">Past_S2</th>
-                            <th scope="col ">Past_S3</th>
-                            <th scope="col ">Past_D1</th>
-                            <th scope="col ">Past_D2</th>
-                            <th scope="col ">Past_D3 </th>
-                            <th scope="col ">PanQue</th>
-                            <th scope="col ">PanInt </th>
+                            <th scope="col ">Pasteles Sensillos </th>
+                            <th scope="col ">Pasteles Dobles</th>
+                            <th scope="col ">Panes de Queso</th>
+                            <th scope="col ">Panes Integrales </th>
                         </tr>
                     </thead>
                     <tbody>
-                        <% for (let i = 0; i < produccion.length; i++) { %>
+                        <% if(produccion) { %>
                             <tr>
                                 <th scope="row ">
-                                    <%= produccion[i].ID_Ficha %>
+                                    <%= produccion.ID_Ficha %>
                                 </th>
                                 <th>
-                                    <%= produccion[i].Fecha_de_Entrega.toLocaleString('es-CO',{year:'numeric', month:'2-digit', day:'2-digit'}) %>
+                                    <%= produccion.Fecha_de_Entrega.toLocaleString('es-CO',{year:'numeric', month:'2-digit', day:'2-digit'}) %>
                                 </th>
                                 <td>
-                                    <%= produccion[i].Past_Sen_1 %>
+                                    <%= produccion.total_pastsen %>
                                 </td>
                                 <td>
-                                    <%= produccion[i].Past_Sen_2 %>
+                                    <%= produccion.total_pastdob %>
                                 </td>
                                 <td>
-                                    <%= produccion[i].Past_Sen_3 %>
+                                    <%= produccion.total_panqueso %>
                                 </td>
                                 <td>
-                                    <%= produccion[i].Past_Dob_1 %>
-                                </td>
-                                <td>
-                                    <%= produccion[i].Past_Dob_2 %>
-                                </td>
-                                <td>
-                                    <%= produccion[i].Past_Dob_3 %>
-                                </td>
-                                <td>
-                                    <%= produccion[i].Pan_Queso %>
-                                </td>
-                                <td>
-                                    <%= produccion[i].Pan_Int %>
+                                    <%= produccion.total_panint %>
                                 </td>
                             </tr>
                             <% } %>
@@ -78,80 +62,442 @@
                 </table>
             </div>
 
-            <% for (let i = 0; i < produccion.length; i++) { %>
-                <a href="produccion/ficha/terminado/<%= produccion[i].Fecha_de_Entrega %>" type="button" class="btn btn-success">Pedido Terminado</a>
-                <% } %>
+            <!--listado ingredientes pasteleria-->
+            <% if(total_ingre_linea_pastel && ingred_linea_pasteleria && produccion) { %>
+                <div class="dialog  mx-5" role="document">
+                    <div class="py-1 container-fluid">
+                        <div class="card">
+                            <div class="modal-header pt-0 mt-0 " style="height: 45px;">
+                                <h5 class="modal-title" id="ingredientes">Línea de Pastelería</h5>
+                            </div>
 
-                    <div class="container-fluid px-5">
-                        <div class="container-fluid px-5">
-                            <div class="container-fluid px-5">
-                                <div class="container-fluid px-5">
-                                    <!-- Titulo tabla-->
-                                    <div id="espacio-medio "></div>
-                                    <nav class="navbar navbar-dark bg-dark ">
-                                        <div class="container-fluid ">
-                                            <div>
-                                                <h4 style="color: white; ">Fichas de Producción Existentes</h4>
+                            <div class="modal-body mb-0" style="background: rgb(98, 166, 245);">
+                                <div class="row ">
+                                    <div class="col ">
+                                        <div class="container-fluid border ml-0" style="width: 350px; background: rgb(255, 255, 255);">
+                                            <!-- Categorias-->
+                                            <div class="row text-dark">
+                                                <div class="col border list-group-item-primary">
+                                                    <h5>Ingrediente</h5>
+                                                </div>
+                                                <div class="col border list-group-item-primary">
+                                                    <h5>Cantidad</h5>
+                                                </div>
+                                            </div>
+                                            <!-- ingrediente 1-->
+                                            <div class="row">
+                                                <div class="col border">
+                                                    <%= total_ingre_linea_pastel.Ingrediente %>
+                                                </div>
+                                                <div class="col border">
+                                                    <%= total_ingre_linea_pastel.Cantidad %> gramos
+                                                </div>
+                                            </div>
+                                            <!-- ingrediente 2-->
+                                            <div class="row">
+                                                <div class="col border">
+                                                    <%= total_ingre_linea_pastel.Ingrediente2 %>
+                                                </div>
+                                                <div class="col border">
+                                                    <%= total_ingre_linea_pastel.Cantidad2 %> gramos
+                                                </div>
+                                            </div>
+                                            <!-- ingrediente 3-->
+                                            <div class="row">
+                                                <div class="col border">
+                                                    <%= total_ingre_linea_pastel.Ingrediente3 %>
+                                                </div>
+                                                <div class="col border">
+                                                    <%= total_ingre_linea_pastel.Cantidad3 %> gramos
+                                                </div>
+                                            </div>
+                                            <!-- ingrediente 4-->
+                                            <div class="row">
+                                                <div class="col border">
+                                                    <%= total_ingre_linea_pastel.Ingrediente4 %>
+                                                </div>
+                                                <div class="col border">
+                                                    <%= total_ingre_linea_pastel.Cantidad4 %> gramos
+                                                </div>
+                                            </div>
+                                            <!-- ingrediente 5-->
+                                            <div class="row">
+                                                <div class="col border">
+                                                    <%= total_ingre_linea_pastel.Ingrediente5 %>
+                                                </div>
+                                                <div class="col border">
+                                                    <%= total_ingre_linea_pastel.Cantidad5 %> mililitros
+                                                </div>
+                                            </div>
+                                            <!-- ingrediente 6-->
+                                            <div class="row">
+                                                <div class="col border">
+                                                    <%= total_ingre_linea_pastel.Ingrediente6 %>
+                                                </div>
+                                                <div class="col border">
+                                                    <%= total_ingre_linea_pastel.Cantidad6 %> gramos
+                                                </div>
+                                            </div>
+                                            <!-- ingrediente 7-->
+                                            <div class="row">
+                                                <div class="col border">
+                                                    <%= total_ingre_linea_pastel.Ingrediente7 %>
+                                                </div>
+                                                <div class="col border">
+                                                    <%= total_ingre_linea_pastel.Cantidad7 %> gramos
+                                                </div>
+                                            </div>
+                                            <!-- ingrediente 8-->
+                                            <div class="row">
+                                                <div class="col border">
+                                                    <%= total_ingre_linea_pastel.Ingrediente8 %>
+                                                </div>
+                                                <div class="col border">
+                                                    <%= total_ingre_linea_pastel.Cantidad8 %> gramos
+                                                </div>
+                                            </div>
+                                            <!-- ingrediente 9-->
+                                            <div class="row">
+                                                <div class="col border">
+                                                    <%= total_ingre_linea_pastel.Ingrediente9 %>
+                                                </div>
+                                                <div class="col border">
+                                                    <%= total_ingre_linea_pastel.Cantidad9 %> gramos
+                                                </div>
+                                            </div>
+                                            <!-- ingrediente 10-->
+                                            <div class="row">
+                                                <div class="col border">
+                                                    <%= total_ingre_linea_pastel.Ingrediente10 %>
+                                                </div>
+                                                <div class="col border">
+                                                    <%= total_ingre_linea_pastel.Cantidad10 %> gramos
+                                                </div>
+                                            </div>
+                                            <!-- ingrediente 11-->
+                                            <div class="row">
+                                                <div class="col border">
+                                                    <%= total_ingre_linea_pastel.Ingrediente11 %>
+                                                </div>
+                                                <div class="col border">
+                                                    <%= total_ingre_linea_pastel.Cantidad11 %> gramos
+                                                </div>
                                             </div>
                                         </div>
-                                    </nav>
-                                    <div id="espacio-medio "></div>
-                                    <!-- listado de Productos del Inventario-->
-                                    <div id="tabla-usuarios">
-                                        <table class="table table-striped container-fluid ">
-                                            <thead style="background-color: rgb(0, 0, 0); color: cornsilk; ">
-                                                <tr>
-                                                    <th scope="col ">Codigo de Ficha </th>
-                                                    <th scope="col ">Fecha de Producción </th>
-                                                    <th scope="col ">Fecha de Entrega </th>
-                                                    <th scope="col ">Ficha de Producción</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <% for (let i = 0; i < produccion.length; i++) { %>
-                                                    <tr>
-                                                        <th scope="row ">
-                                                            <%= produccion[i].ID_Ficha  %>
-                                                        </th>
-                                                        <th>
-                                                            <%= produccion[i].Fecha_de_Produccion.toLocaleString('es-CO',{year:'numeric', month:'2-digit', day:'2-digit'}) %>
-                                                        </th>
-                                                        <td>
-                                                            <%= produccion[i].Fecha_de_Entrega.toLocaleString('es-CO',{year:'numeric', month:'2-digit', day:'2-digit'}) %>
-                                                        </td>
-                                                        <td>
-                                                            <!-- Boton para ver la ficha-->
-                                                            <div class="py-1 container-fluid col ">
-                                                                <div id="botones-mod-1" class="d-flex justify-content-center">
-                                                                    <!-- VENTANA SEGUNDARIA-->
-                                                                    <a href="produccion/ficha/<%= produccion[i].ID_Ficha %>" class="btn btn-primary ">Abrir</a>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <% } %>
-                                            </tbody>
-                                        </table>
+                                    </div>
+                                    <div class="col">
+                                        <div class="container-fluid border ml-0" style="width: 680px; height:380px; background: rgb(255, 255, 255);">
+                                            <div class="container-fluid">
+                                                <H5 class="pt-2 pb-0">Procedimiento de Producción</H5>
+                                                <p class="pt-0 pb-0">
+                                                    <%= ingred_linea_pasteleria.Preparacion_mezcla %>
+                                                </p>
+                                                <div class="modal-footer text-center pt-0 pb-2"></div>
+                                            </div>
+                                            <div class="container-fluid">
+                                                <H5 class="pt-0 pb-0">Pasteles para Rellenar</H5>
+                                                <div class="row pt-0 pb-0">
+                                                    <div class="col border">
+                                                        Guyaba:
+                                                        <%= produccion.total_pasts1 %>
+                                                    </div>
+                                                    <div class="col border">
+                                                        Arequipe:
+                                                        <%= produccion.total_pasts2 %>
+                                                    </div>
+                                                    <div class="col border">
+                                                        Queso:
+                                                        <%= produccion.total_pasts3 %>
+                                                    </div>
+                                                </div>
+                                                <div class="row pt-0 pb-0">
+                                                    <div class="col border">
+                                                        Guyaba y Queso:
+                                                        <%= produccion.total_pastd1 %>
+                                                    </div>
+                                                    <div class="col border">
+                                                        Arequipe y Queso:
+                                                        <%= produccion.total_pastd2 %>
+                                                    </div>
+                                                    <div class="col border">
+                                                        Tres Quesos:
+                                                        <%= produccion.total_pastd3 %>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer text-center pt-1 pb-2"></div>
+                                            </div>
+                                            <div class="container-fluid">
+                                                <H5 class="pt-0 pb-0">Método de Horneo</H5>
+                                                <p class="pt-0 pb-0">
+                                                    <%= ingred_linea_pasteleria.Horneo %>
+                                                </p>
+                                                <div class="modal-footer text-center pt-0 pb-2"></div>
+                                            </div>
+                                            <div class="container-fluid ">
+                                                <H5 class="pt-0 pb-0">Método de Refrigeración</H5>
+                                                <p class="pt-0 pb-0">
+                                                    <%= ingred_linea_pasteleria.Refrigeracion %>
+                                                </p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
+                <% } %>
 
-                    <!--SWEET ALERT 2-->
-                    <% if(typeof alert != "undefined") {%>
-                        <script>
-                            Swal.fire({
-                                title: '<%= alertTitle %>',
-                                text: '<%= alertMessage %>',
-                                icon: '<%= alertIcon %>',
-                                showConfirmButton: '<%= showConfirmButton %>',
-                                timer: false
-                            }).then(() => {
-                                window.location = '/<%= ruta %>'
-                            })
-                        </script>
+                    <!--listado ingredientes pasteleria-->
+                    <% if(total_ingre_linea_pan_queso && ingred_linea_pan_queso) { %>
+                        <div class="dialog  mx-5" role="document">
+                            <div class="py-1 container-fluid">
+                                <div class="card">
+                                    <div class="modal-header pt-0 mt-0 " style="height: 45px;">
+                                        <h5 class="modal-title" id="ingredientes">Línea de Pan Queso</h5>
+                                    </div>
+
+                                    <div class="modal-body mb-0" style="background: rgb(98, 166, 245);">
+                                        <div class="row ">
+                                            <div class="col ">
+                                                <div class="container-fluid border ml-0" style="width: 350px; background: rgb(255, 255, 255);">
+                                                    <!-- Categorias-->
+                                                    <div class="row text-dark">
+                                                        <div class="col border list-group-item-primary">
+                                                            <h5>Ingrediente</h5>
+                                                        </div>
+                                                        <div class="col border list-group-item-primary">
+                                                            <h5>Cantidad</h5>
+                                                        </div>
+                                                    </div>
+                                                    <!-- ingrediente 1-->
+                                                    <div class="row">
+                                                        <div class="col border">
+                                                            <%= total_ingre_linea_pan_queso.Ingred_panqueso1 %>
+                                                        </div>
+                                                        <div class="col border">
+                                                            <%= total_ingre_linea_pan_queso.Cantid_panqueso1 %> gramos
+                                                        </div>
+                                                    </div>
+                                                    <!-- ingrediente 2-->
+                                                    <div class="row">
+                                                        <div class="col border">
+                                                            <%= total_ingre_linea_pan_queso.Ingred_panqueso2 %>
+                                                        </div>
+                                                        <div class="col border">
+                                                            <%= total_ingre_linea_pan_queso.Cantid_panqueso2 %> gramos
+                                                        </div>
+                                                    </div>
+                                                    <!-- ingrediente 3-->
+                                                    <div class="row">
+                                                        <div class="col border">
+                                                            <%= total_ingre_linea_pan_queso.Ingred_panqueso3 %>
+                                                        </div>
+                                                        <div class="col border">
+                                                            <%= total_ingre_linea_pan_queso.Cantid_panqueso3 %> gramos
+                                                        </div>
+                                                    </div>
+                                                    <!-- ingrediente 4-->
+                                                    <div class="row">
+                                                        <div class="col border">
+                                                            <%= total_ingre_linea_pan_queso.Ingred_panqueso4 %>
+                                                        </div>
+                                                        <div class="col border">
+                                                            <%= total_ingre_linea_pan_queso.Cantid_panqueso4 %> gramos
+                                                        </div>
+                                                    </div>
+                                                    <!-- ingrediente 5-->
+                                                    <div class="row">
+                                                        <div class="col border">
+                                                            <%= total_ingre_linea_pan_queso.Ingred_panqueso5 %>
+                                                        </div>
+                                                        <div class="col border">
+                                                            <%= total_ingre_linea_pan_queso.Cantid_panqueso5 %> mililitros
+                                                        </div>
+                                                    </div>
+                                                    <!-- ingrediente 6-->
+                                                    <div class="row">
+                                                        <div class="col border">
+                                                            <%= total_ingre_linea_pan_queso.Ingred_panqueso6 %>
+                                                        </div>
+                                                        <div class="col border">
+                                                            <%= total_ingre_linea_pan_queso.Cantid_panqueso6 %> gramos
+                                                        </div>
+                                                    </div>
+                                                    <!-- ingrediente 7-->
+                                                    <div class="row">
+                                                        <div class="col border">
+                                                            <%= total_ingre_linea_pan_queso.Ingred_panqueso7 %>
+                                                        </div>
+                                                        <div class="col border">
+                                                            <%= total_ingre_linea_pan_queso.Cantid_panqueso7 %> gramos
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="container-fluid border ml-0" style="width: 680px; height:315px; background: rgb(255, 255, 255);">
+                                                    <div class="container-fluid">
+                                                        <H5 class="pt-2 pb-0">Procedimiento de Producción</H5>
+                                                        <p class="pt-0 pb-0">
+                                                            <%= ingred_linea_pan_queso.Preparacion_mezcla %>
+                                                        </p>
+                                                        <div class="modal-footer text-center pt-0 pb-2"></div>
+                                                    </div>
+                                                    <div class="container-fluid">
+                                                        <H5 class="pt-0 pb-0">Método de Horneo</H5>
+                                                        <p class="pt-0 pb-0">
+                                                            <%= ingred_linea_pan_queso.Horneo %>
+                                                        </p>
+                                                        <div class="modal-footer text-center pt-0 pb-2"></div>
+                                                    </div>
+                                                    <div class="container-fluid ">
+                                                        <H5 class="pt-0 pb-0">Método de Refrigeración</H5>
+                                                        <p class="pt-0 pb-0">
+                                                            <%= ingred_linea_pan_queso.Refrigeracion %>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <% } %>
+
+                            <!--listado ingredientes pasteleria-->
+                            <% if(total_ingre_linea_pan_inte && ingred_linea_pan_inte) { %>
+                                <div class="dialog  mx-5" role="document">
+                                    <div class="py-1 container-fluid">
+                                        <div class="card">
+                                            <div class="modal-header pt-0 mt-0 " style="height: 45px;">
+                                                <h5 class="modal-title" id="ingredientes">Línea de Pan Integral</h5>
+                                            </div>
+
+                                            <div class="modal-body mb-0" style="background: rgb(98, 166, 245);">
+                                                <div class="row ">
+                                                    <div class="col ">
+                                                        <div class="container-fluid border ml-0" style="width: 350px; background: rgb(255, 255, 255);">
+                                                            <!-- Categorias-->
+                                                            <div class="row text-dark">
+                                                                <div class="col border list-group-item-primary">
+                                                                    <h5>Ingrediente</h5>
+                                                                </div>
+                                                                <div class="col border list-group-item-primary">
+                                                                    <h5>Cantidad</h5>
+                                                                </div>
+                                                            </div>
+                                                            <!-- ingrediente 1-->
+                                                            <div class="row">
+                                                                <div class="col border">
+                                                                    <%= total_ingre_linea_pan_inte.Ingred_panint1 %>
+                                                                </div>
+                                                                <div class="col border">
+                                                                    <%= total_ingre_linea_pan_inte.Cantid_panint1 %> gramos
+                                                                </div>
+                                                            </div>
+                                                            <!-- ingrediente 2-->
+                                                            <div class="row">
+                                                                <div class="col border">
+                                                                    <%= total_ingre_linea_pan_inte.Ingred_panint2 %>
+                                                                </div>
+                                                                <div class="col border">
+                                                                    <%= total_ingre_linea_pan_inte.Cantid_panint2 %> gramos
+                                                                </div>
+                                                            </div>
+                                                            <!-- ingrediente 3-->
+                                                            <div class="row">
+                                                                <div class="col border">
+                                                                    <%= total_ingre_linea_pan_inte.Ingred_panint3 %>
+                                                                </div>
+                                                                <div class="col border">
+                                                                    <%= total_ingre_linea_pan_inte.Cantid_panint3 %> gramos
+                                                                </div>
+                                                            </div>
+                                                            <!-- ingrediente 4-->
+                                                            <div class="row">
+                                                                <div class="col border">
+                                                                    <%= total_ingre_linea_pan_inte.Ingred_panint4 %>
+                                                                </div>
+                                                                <div class="col border">
+                                                                    <%= total_ingre_linea_pan_inte.Cantid_panint4 %> gramos
+                                                                </div>
+                                                            </div>
+                                                            <!-- ingrediente 5-->
+                                                            <div class="row">
+                                                                <div class="col border">
+                                                                    <%= total_ingre_linea_pan_inte.Ingred_panint5 %>
+                                                                </div>
+                                                                <div class="col border">
+                                                                    <%= total_ingre_linea_pan_inte.Cantid_panint5 %> mililitros
+                                                                </div>
+                                                            </div>
+                                                            <!-- ingrediente 6-->
+                                                            <div class="row">
+                                                                <div class="col border">
+                                                                    <%= total_ingre_linea_pan_inte.Ingred_panint6 %>
+                                                                </div>
+                                                                <div class="col border">
+                                                                    <%= total_ingre_linea_pan_inte.Cantid_panint6 %> gramos
+                                                                </div>
+                                                            </div>
+                                                            <!-- ingrediente 7-->
+                                                            <div class="row">
+                                                                <div class="col border">
+                                                                    <%= total_ingre_linea_pan_inte.Ingred_panint7 %>
+                                                                </div>
+                                                                <div class="col border">
+                                                                    <%= total_ingre_linea_pan_inte.Cantid_panint7 %> gramos
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="container-fluid border ml-0" style="width: 680px; height:315px; background: rgb(255, 255, 255);">
+                                                            <div class="container-fluid">
+                                                                <H5 class="pt-2 pb-0">Procedimiento de Producción</H5>
+                                                                <p class="pt-0 pb-0">
+                                                                    <%= ingred_linea_pan_inte.Preparacion_mezcla %>
+                                                                </p>
+                                                                <div class="modal-footer text-center pt-0 pb-2"></div>
+                                                            </div>
+                                                            <div class="container-fluid">
+                                                                <H5 class="pt-0 pb-0">Método de Horneo</H5>
+                                                                <p class="pt-0 pb-0">
+                                                                    <%= ingred_linea_pan_inte.Horneo %>
+                                                                </p>
+                                                                <div class="modal-footer text-center pt-0 pb-2"></div>
+                                                            </div>
+                                                            <div class="container-fluid ">
+                                                                <H5 class="pt-0 pb-0">Método de Refrigeración</H5>
+                                                                <p class="pt-0 pb-0">
+                                                                    <%= ingred_linea_pan_inte.Refrigeracion %>
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <% } %>
+
+                                    <% if( produccion) { %>
+                                        <!-- ENVIAR -->
+                                        <div id="espacio-medio-color-verde-2" class="justify-center">
+                                            <div class="py-2 d-grid gap-2 col-3 mx-auto justify-center">
+                                                <div class="row">
+                                                    <a href="/produccion" class="btn btn-danger col mr-1">Regresar</a>
+                                                    <a href="/produccion/ficha/terminada/<%= produccion.ID_Ficha %>" class="btn btn-primary col ml-1">Producción Terminada</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <% } %>
+
+                                            <!-- SWEET ALERT -->
+                                            <%- include("../elements/sweetalert2") -%>
     </body>
 
     </html>

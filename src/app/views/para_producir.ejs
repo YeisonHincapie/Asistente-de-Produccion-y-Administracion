@@ -1,8 +1,8 @@
-<%- include("../views/head_html") -%>
+<%- include("../elements/head_html") -%>
 
     <body>
         <!--menu de navegación-->
-        <%- include("../views/menu") -%>
+        <%- include("../elements/menu", {Rol:Rol}) -%>
 
             <!--titulo pagina 1-->
             <div class="d-flex justify-content-center container-fluid">
@@ -27,7 +27,7 @@
             <div id="espacio-medio "></div>
 
             <!--tabla de pedidos pendientes por producir-->
-            <table class="table table-striped">
+            <table class="table table-striped table-bordered">
                 <thead style="background-color: rgb(0, 0, 0); color: cornsilk;">
                     <tr>
                         <th scope="col">ID Ped</th>

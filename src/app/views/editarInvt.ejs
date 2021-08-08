@@ -1,4 +1,4 @@
-<%- include("../views/head_html") -%>
+<%- include("../elements/head_html") -%>
 
     <body>
         <% if(inventario) { %>
@@ -11,15 +11,15 @@
                                 <span aria-hidden="true">&times;</span>
                             </a>
                         </div>
-                        <div class="modal-body" style="background-color:rgb(160, 204, 253);">
-                            <form action="editar/<%= inventario.ID_Producto %>" method="POST" class="form-group container-fluid mb-0">
+                        <div class="modal-body" style="background-color:#a0ccfd;">
+                            <form action="editar/<%= inventario.ID_Ingrediente %>" method="POST" class="form-group container-fluid mb-0">
                                 <div class="form-group row mb-0">
                                     <div class="form-group">
-                                        <input id="ID_Producto" value="<%= inventario.ID_Producto %>" hidden>
+                                        <input id="ID_Ingrediente" value="<%= inventario.ID_Ingrediente %>" hidden>
                                     </div>
                                     <div class="form-group col mb-0">
-                                        <label for="Nombre_Producto">Nombre</label>
-                                        <input type="text" value="<%= inventario.Nombre_Producto %>" class="form-control" name="Nombre_Producto" disabled>
+                                        <label for="Nombre_Ingrediente">Nombre</label>
+                                        <input type="text" value="<%= inventario.Nombre_Ingrediente %>" class="form-control" name="Nombre_Producto" disabled>
                                     </div>
                                     <div class="form-group col mb-0">
                                         <label for="Marca">Marca</label>
@@ -41,7 +41,7 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <a href="/inventario" class="btn btn-danger " data-dismiss="modal">Cerrar</a>
+                                    <a href="/inventario" class="btn btn-danger " data-dismiss="modal">Regresar</a>
                                     <button type="submit" class="btn btn-primary">Actualizar Entrada</button>
                                 </div>
                             </form>
@@ -50,19 +50,8 @@
                 </div>
                 <% } %>
 
-                    <% if(typeof alert != "undefined") {%>
-                        <script>
-                            Swal.fire({
-                                title: '<%= alertTitle %>',
-                                text: '<%= alertMessage %>',
-                                icon: '<%= alertIcon %>',
-                                showConfirmButton: '<%= showConfirmButton %>',
-                                timer: false
-                            }).then(() => {
-                                window.location = '/<%=ruta %>'
-                            })
-                        </script>
-                        <% } %>
+                    <!-- SWEET ALERT -->
+                    <%- include("../elements/sweetalert2") -%>
 
     </body>
 

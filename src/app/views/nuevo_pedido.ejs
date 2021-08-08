@@ -1,8 +1,8 @@
-<%- include("../views/head_html") -%>
+<%- include("../elements/head_html") -%>
 
     <body>
         <!--menu de navegación-->
-        <%- include("../views/menu") -%>
+        <%- include("../elements/menu", {Rol:Rol}) -%>
 
             <!--titulo pagina 1-->
             <div class="d-flex justify-content-center container-fluid">
@@ -75,11 +75,8 @@
                         <!--INFORMACION DEL PEDIDO -->
                         <p></p>
                         <div class="form-group container-fluid justify-content-center" style="background: rgba(47, 250, 138, 0.541);">
-                            <!-- Fecha del peido(este dato se igresa automaticamente)
-                                <div class="form-group col ">
-                                    <label for="Fecha_de_Pedido">Fecha de encargo</label>
-                                    <input type="datetime-local" name="Fecha_de_Pedido">
-                                </div>-->
+                            <!-- Fecha del peido(este dato se igresa automaticamente)-->
+
                             <div class="form-group  justify-center">
                                 <label for="Fecha_de_Entrega">Fecha de entrega del pedido  </label>
                                 <input type="date" name="Fecha_de_Entrega">
@@ -159,23 +156,11 @@
                 </div>
             </div>
 
-            <!-- SWEET ALERT 2 -->
-            <% if(typeof alert != "undefined") {%>
-                <script>
-                    Swal.fire({
-                        title: '<%= alertTitle %>',
-                        text: '<%= alertMessage %>',
-                        icon: '<%= alertIcon %>',
-                        showConfirmButton: '<%= showConfirmButton %>',
-                        timer: false
-                    }).then(() => {
-                        window.location = '/<%=ruta %>'
-                    })
-                </script>
-                <% } %>
+            <!-- SWEET ALERT -->
+            <%- include("../elements/sweetalert2") -%>
 
-                    <div id="espacio-blanco "></div>
-                    <div id="espacio-medio "></div>
+                <div id="espacio-blanco "></div>
+                <div id="espacio-medio "></div>
 
     </body>
 

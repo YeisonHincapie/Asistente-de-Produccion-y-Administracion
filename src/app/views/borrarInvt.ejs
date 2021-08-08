@@ -1,4 +1,4 @@
-<%- include("../views/head_html") -%>
+<%- include("../elements/head_html") -%>
 
     <body>
 
@@ -14,18 +14,19 @@
                             </a>
                         </div>
                         <div class="form-group">
-                            <input id="ID_Producto" value="<%= inventario.ID_Producto %>" hidden>
+                            <input id="ID_Ingrediente" value="<%= inventario.ID_Ingrediente %>" hidden>
                         </div>
                         <div class="modal-body text-center">
-                            ¿Estás seguro de borrar la entrada 
+                            ¿Estás seguro de borrar la entrada
                             <h3>
-                                con ID: <%= inventario.ID_Producto %>
+                                con ID:
+                                <%= inventario.ID_Ingrediente %>
                             </h3>
                             de forma permanente?
                         </div>
                         <div class="modal-footer">
                             <a href="/inventario" type="button" class="btn btn-danger">Cancelar</a>
-                            <a href="/inventario/borrarInvt/borrar/<%= inventario.ID_Producto %>" class="btn btn-primary">Borrar Entrada</a>
+                            <a href="/inventario/borrarInvt/borrar/<%= inventario.ID_Ingrediente %>" class="btn btn-primary">Borrar Entrada</a>
                         </div>
                     </div>
                 </div>
@@ -33,19 +34,8 @@
 
             <% } %>
 
-                <% if(typeof alert != "undefined") {%>
-                    <script>
-                        Swal.fire({
-                            title: '<%= alertTitle %>',
-                            text: '<%= alertMessage %>',
-                            icon: '<%= alertIcon %>',
-                            showConfirmButton: '<%= showConfirmButton %>',
-                            timer: false
-                        }).then(() => {
-                            window.location = '/<%=ruta %>'
-                        })
-                    </script>
-                    <% } %>
+                <!-- SWEET ALERT -->
+                <%- include("../elements/sweetalert2") -%>
     </body>
 
     </html>

@@ -1,8 +1,8 @@
-<%- include("../views/head_html") -%>
+<%- include("../elements/head_html") -%>
 
     <body>
         <!--menu de navegación-->
-        <%- include("../views/menu") -%>
+        <%- include("../elements/menu", {Rol:Rol}) -%>
 
             <!--titulo pagina 1-->
             <div class="d-flex justify-content-center container-fluid">
@@ -90,17 +90,13 @@
                     <div>
                         <h4 style="color: white; ">Inventario</h4>
                     </div>
-                    <form class="d-flex ">
-                        <input class="form-control me-2 " type="search " placeholder="Buscar un producto " aria-label="Search ">
-                        <button class="btn btn-outline-light " type="submit ">Buscar</button>
-                    </form>
                 </div>
             </nav>
             <div id="espacio-medio "></div>
 
             <!-- listado de Productos del Inventario-->
             <div id="tabla-inventario ">
-                <table class="table table-striped container-fluid ">
+                <table class="table table-striped container-fluid table-bordered">
                     <thead style="background-color: rgb(0, 0, 0); color: cornsilk; ">
                         <tr>
                             <th scope="col ">ID_Ingred </th>
@@ -140,108 +136,17 @@
                                 </td>
                                 <td>
                                     <!-- Boton para Actualizar un producto-->
-                                    <!-- Button trigger modal -->
                                     <div class="py-1 container-fluid col">
                                         <div id="botones-mod-1" class="d-flex justify-content-center">
                                             <!-- Boton para Crear un producto-->
                                             <!-- VENTANA SEGUNDARIA-->
                                             <a href="inventario/editarInvt/<%= inventario[i].ID_Ingrediente%>" class="btn btn-primary">Actualizar</a>
-
-                                            <!-- Button trigger modal --
-                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ACTUALIZAR<%= inventario.ID_Producto %>" data-bs-whatever="@fat">Actualizar Entrada</button>
-                                            -->
-                                            <!-- Modal -->
-                                            <!-- si hay datos en el inventario --
-                                            <% if(inventario) { %>
-                                                <div class="modal fade" id="ACTUALIZAR<%= inventario.ID_Producto %>" tabindex="-1" aria-labelledby="ACTUALIZAR" aria-hidden="true">
-                                                    <div class="modal-dialog" role="document">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title" id="ACTUALIZAR">Actualizar Entrada</h5>
-                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                            </div>
-                                                            <div class="modal-body" style="background-color:rgb(160, 204, 253);">
-                                                                <form action="/inventario/<%= inventario[i].ID_Producto %>" method="POST" class="form-group container-fluid">
-                                                                    <div class="form-group row">
-                                                                        <div class="form-group">
-                                                                            <input id="ID_Producto" value="<%= inventario.ID_Producto %>" hidden>
-                                                                        </div>
-                                                                        <div class="form-group col">
-                                                                            <label for="Nombre_Producto">Nombre</label>
-                                                                            <input type="text" value="<%= inventario.Nombre_Producto %>" class="form-control" name="Nombre_Producto" disabled>
-                                                                        </div>
-                                                                        <div class="form-group col">
-                                                                            <label for="Marca">Marca</label>
-                                                                            <input type="text" value="<%= inventario.Marca %>" class="form-control" name="Marca" disabled>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="form-group ">
-                                                                        <label for="Cantidad ">Cantidad</label>
-                                                                        <input type="text" value="<%= inventario.Cantidad %>" class="form-control" name="Cantidad" required="true">
-                                                                    </div>
-                                                                    <div class="form-group row">
-                                                                        <div class="form-group col">
-                                                                            <label for="Fecha_de_Ingreso">Fecha de Ingreso</label>
-                                                                            <input type="datetime-local" value="<%= inventario.Fecha_de_Ingreso %>" class="form-control" name="Fecha_de_Ingreso" required="true">
-                                                                        </div>
-                                                                        <div class="form-group col">
-                                                                            <label for="Fecha_de_Vencimiento">Fecha de Vencimiento</label>
-                                                                            <input type="datetime-local" value="<%= inventario.Fecha_de_Vencimiento %>" class="form-control" name="Fecha_de_Vencimiento" required="true">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="modal-footer">
-                                                                        <button type="button" class="btn btn-danger " data-dismiss="modal">Cerrar</button>
-                                                                        <button type="submit" class="btn btn-primary">Actualizar Entrada</button>
-                                                                    </div>
-                                                                </form>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <% } %>
-                                                 -->
                                         </div>
                                     </div>
                                 </td>
                                 <!--boton para borrar producto -->
                                 <td>
-                                    <!-- Button trigger modal -->
                                     <a href="inventario/borrarInvt/<%= inventario[i].ID_Ingrediente %>" type="button" class="btn btn-danger">X</a>
-                                    <!--
-                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#DELETE_ENTRADA">Borrar </button>
-                                -->
-                                    <!-- Modal --
-                                <% if(inventario) { %>
-                                    <div class="modal fade" id="DELETE_ENTRADA" name="DELETE_ENTRADA" tabindex="-1" role="dialog" aria-labelledby="DELETE_ENTRADA" aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-centered" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title text-center text-danger " id="DELETE_ENTRADA" name="DELETE_ENTRADA">ALVERTENCIA</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                     </button>
-                                                </div>
-                                                <div class="form-group">
-                                                    <input id="ID_Producto" value="<%= inventario[i].ID_Producto %>" hidden>
-                                                </div>
-                                                <div class="modal-body text-center">
-                                                    ¿Estas seguro de borrrar la entrada
-                                                    <h3>
-                                                        <%= inventario[i].ID_Producto %>
-                                                    </h3>
-                                                    de forma permanente?
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                                                    <a href="inventario/borrarInvt/<%= inventario[i].ID_Producto %>" class="btn btn-primary">Borrar Entrada</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <% } %>-->
-
                                 </td>
                             </tr>
                             <% } %>
@@ -249,22 +154,8 @@
                 </table>
             </div>
 
-            <!-- SWEET ALERT 2
-        <script src="/resources/js/sweetalert2.all.min.js"></script>
-        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>-->
-            <% if(typeof alert != "undefined") {%>
-                <script>
-                    Swal.fire({
-                        title: '<%= alertTitle %>',
-                        text: '<%= alertMessage %>',
-                        icon: '<%= alertIcon %>',
-                        showConfirmButton: '<%= showConfirmButton %>',
-                        timer: false
-                    }).then(() => {
-                        window.location = '/<%=ruta %>'
-                    })
-                </script>
-                <% } %>
+            <!-- SWEET ALERT -->
+            <%- include("../elements/sweetalert2") -%>
 
     </body>
 

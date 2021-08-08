@@ -1,4 +1,4 @@
-<%- include("../views/head_html") -%>
+<%- include("../elements/head_html") -%>
 
     <body>
         <% if(para_entregar) { %>
@@ -145,19 +145,8 @@
 
                 <% } %>
 
-                    <% if(typeof alert != "undefined") {%>
-                        <script>
-                            Swal.fire({
-                                title: '<%= alertTitle %>',
-                                text: '<%= alertMessage %>',
-                                icon: '<%= alertIcon %>',
-                                showConfirmButton: '<%= showConfirmButton %>',
-                                timer: false
-                            }).then(() => {
-                                window.location = '/<%=ruta %>'
-                            })
-                        </script>
-                        <% } %>
+                    <!-- SWEET ALERT -->
+                    <%- include("../elements/sweetalert2") -%>
 
 
     </body>

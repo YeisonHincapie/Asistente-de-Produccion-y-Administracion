@@ -1,8 +1,8 @@
-<%- include("../views/head_html") -%>
+<%- include("../elements/head_html") -%>
 
     <body>
         <!--menu de navegación-->
-        <%- include("../views/menu") -%>
+        <%- include("../elements/menu", {Rol:Rol}) -%>
 
             <!--titulo pagina 1-->
             <div class="d-flex justify-content-center container-fluid">
@@ -71,12 +71,13 @@
                             <div id="espacio-medio "></div>
                             <!-- listado de Productos del Inventario-->
                             <div id="tabla-usuarios">
-                                <table class="table table-striped container-fluid ">
+                                <table class="table table-striped container-fluid table-bordered">
                                     <thead style="background-color: rgb(0, 0, 0); color: cornsilk; ">
                                         <tr>
-                                            <th scope="col ">Codigo de Ficha </th>
+                                            <th scope="col ">Código de Ficha </th>
                                             <th scope="col ">Fecha de Producción </th>
                                             <th scope="col ">Fecha de Entrega </th>
+                                            <th scope="col ">Estado </th>
                                             <th scope="col ">Ficha de Producción</th>
                                         </tr>
                                     </thead>
@@ -92,12 +93,15 @@
                                                 <td>
                                                     <%= produccion[i].Fecha_de_Entrega.toLocaleString('es-CO',{year:'numeric', month:'2-digit', day:'2-digit'}) %>
                                                 </td>
+                                                <th>
+                                                    <%= produccion[i].Estado %>
+                                                </th>
                                                 <td>
                                                     <!-- Boton para ver la ficha-->
                                                     <div class="py-1 container-fluid col ">
                                                         <div id="botones-mod-1" class="d-flex justify-content-center">
                                                             <!-- VENTANA SEGUNDARIA-->
-                                                            <a href="produccion/ficha/<%= produccion[i].ID_Ficha %>" class="btn btn-primary ">Abrir</a>
+                                                            <a href="produccion/ficha/<%= produccion[i].ID_Ficha %>" class="btn btn-primary ">Abrir Ficha</a>
                                                         </div>
                                                     </div>
                                                 </td>
@@ -112,20 +116,9 @@
             </div>
 
 
-            <!--SWEET ALERT 2-->
-            <% if(typeof alert != "undefined") {%>
-                <script>
-                    Swal.fire({
-                        title: '<%= alertTitle %>',
-                        text: '<%= alertMessage %>',
-                        icon: '<%= alertIcon %>',
-                        showConfirmButton: '<%= showConfirmButton %>',
-                        timer: false
-                    }).then(() => {
-                        window.location = '/<%= ruta %>'
-                    })
-                </script>
-                <% } %>
+            <!-- SWEET ALERT -->
+            <%- include("../elements/sweetalert2") -%>
+
     </body>
 
     </html>

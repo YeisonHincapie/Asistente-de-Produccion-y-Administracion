@@ -1,8 +1,8 @@
-<%- include("../views/head_html") -%>
+<%- include("../elements/head_html") -%>
 
     <body>
         <!--menu de navegación-->
-        <%- include("../views/menu") -%>
+        <%- include("../elements/menu", {Rol:Rol}) -%>
 
             <!--titulo pagina 1-->
             <div class="d-flex justify-content-center container-fluid ">
@@ -31,7 +31,7 @@
 
                                 <!-- listado de Productos del Inventario-->
                                 <div id="tabla-usuarios">
-                                    <table class="table table-striped container-fluid ">
+                                    <table class="table table-striped container-fluid table-bordered">
                                         <thead style="background-color: rgb(0, 0, 0); color: cornsilk; ">
                                             <tr>
                                                 <th scope="col ">ID Usuario </th>
@@ -73,20 +73,8 @@
                     </div>
                 </div>
 
-                <!-- SWEET ALERT 2-->
-                <% if(typeof alert != "undefined") {%>
-                    <script>
-                        Swal.fire({
-                            title: '<%= alertTitle %>',
-                            text: '<%= alertMessage %>',
-                            icon: '<%= alertIcon %>',
-                            showConfirmButton: '<%= showConfirmButton %>',
-                            timer: false
-                        }).then(() => {
-                            window.location = '/<%=ruta %>'
-                        })
-                    </script>
-                    <% } %>
+                <!-- SWEET ALERT -->
+                <%- include("../elements/sweetalert2") -%>
 
     </body>
 

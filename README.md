@@ -7,7 +7,5 @@ artesanales a semi industriales, con este fin se le brindo a la empresa un progr
 clientes e inventario almacenado sus datos en bases de datos más fáciles de manejar y analizar. 
 
 Datos del desarrollador: 
-Yeison Hincapie Oquendo
-Maestro en Artes Visuales y Técnico en Programación
-yeisonartistavisual@hotmail.com
+Yeison Hincapie Oquendo / Maestro en Artes Visuales y Técnico en Programación / yeisonartistavisual@hotmail.com
 

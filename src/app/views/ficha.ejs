@@ -484,7 +484,7 @@
                                 </div>
                                 <% } %>
 
-                                    <% if( produccion) { %>
+                                    <% if( produccion.Estado=="Para Producir") { %>
                                         <!-- ENVIAR -->
                                         <div id="espacio-medio-color-verde-2" class="justify-center">
                                             <div class="py-2 d-grid gap-2 col-3 mx-auto justify-center">
@@ -495,9 +495,19 @@
                                             </div>
                                         </div>
                                         <% } %>
+                                            <% if( produccion.Estado=="Terminado") { %>
+                                                <!-- ENVIAR -->
+                                                <div id="espacio-medio-color-verde-2" class="justify-center">
+                                                    <div class="py-2 d-grid gap-2 col-3 mx-auto justify-center">
+                                                        <div class="row">
+                                                            <a href="/produccion" class="btn btn-danger col mr-1">Regresar</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <% } %>
 
-                                            <!-- SWEET ALERT -->
-                                            <%- include("../elements/sweetalert2") -%>
+                                                    <!-- SWEET ALERT -->
+                                                    <%- include("../elements/sweetalert2") -%>
     </body>
 
     </html>

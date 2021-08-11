@@ -1,0 +1,113 @@
+<!--menu-->#nombre-programa {
+    background: rgb(255, 255, 255);
+}
+
+#menu {
+    background-color: rgb(43, 43, 247);
+}
+
+<!--contenido-->#contenido {
+    background-color: rgb(68, 68, 248);
+}
+
+#caja-contenido {
+    background-color: rgb(255, 255, 255);
+    height: fit-content;
+    left: auto;
+    justify-content: center;
+}
+
+#foto-del-cliente {
+    width: auto;
+    height: auto;
+}
+
+#espacio-blanco {
+    background-color: rgb(255, 255, 255);
+    height: 20px;
+}
+
+#espacio-medio {
+    background-color: rgb(68, 68, 248);
+    height: 20px;
+}
+
+#espacio-medio-2 {
+    background-color: rgb(68, 68, 248);
+    height: 20px;
+}
+
+#botones-mod-1 {
+    padding: auto;
+    margin: auto;
+    justify-items: center;
+}
+
+h5 {
+    padding: 10px;
+}
+
+h4 {
+    padding: 3px;
+    justify-content: first baseline;
+}
+
+p {
+    margin: 20px;
+    padding: 0px;
+}
+
+<!--mod-1-2-->#para-entregar {
+    background-color: rgb(68, 68, 248);
+    margin: 20px;
+    padding: 20px;
+}
+
+.form-group {
+    padding: 10px;
+}
+
+#espacio-medio-color-verde {
+    background: rgb(19, 235, 116);
+    height: auto;
+    left: auto;
+    justify-content: center;
+}
+
+#espacio-medio-color-verde-2 {
+    background: rgb(19, 235, 116);
+    height: 55px;
+    left: auto;
+    justify-content: center;
+}
+
+h6 {
+    justify-content: center;
+    margin: auto;
+    padding: 7px;
+}
+
+#seleccion-pedido {
+    margin: auto;
+    padding: auto;
+}
+
+#productos {
+    background: rgba(47, 250, 138, 0.541);
+    height: auto;
+    left: auto;
+    justify-content: start;
+}
+
+<!--mod-3-inventario-->#tabla-inventario {
+    height: auto;
+    left: auto;
+    margin: 10px;
+    padding: 10px;
+}
+
+.disabled {
+    pointer-events: none;
+    cursor: default;
+    opacity: 0.6;
+}

@@ -1313,9 +1313,9 @@ module.exports = app => {
             });
         }
     });
+
     //4. inventario (eliminar entradas) 
     //4.1. //obtener id del Ingrediente
-
     app.get("/inventario/borrarInvt/:ID_Ingrediente", (req, res) => {
         if (req.session.loggedin) {
             const ID_Ingrediente = req.params.ID_Ingrediente;

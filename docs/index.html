@@ -6,55 +6,112 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Bootstrap CSS -->
-    <link href="/docs/css/bootstrap.min.css" rel="stylesheet">
-    <!-- sweetalert2 -->
-    <link href="/docs/css/sweetalert2.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
     <!-- estilo -->
-    <link href="/docs/css/estilos.css" rel="stylesheet" type="text/css">
-
-    <!-- popper y jquery -->
-    <script src="/docs/js/popper.min.js "></script>
-    <script src="/docs/js/jquery-3.3.1.min.js "></script>
-    <!-- Bootstrap js -->
-    <script src="/docs/js/bootstrap.bundle.js"></script>
-    <script src="/docs/js/bootstrap.bundle.min.js"></script>
-
+    <link href="https://raw.githack.com/YeisonHincapie/Asistente-de-Produccion-y-Administracion/main/docs/css/estilos.css" type="text/css">
+    
     <title>GitHub Pages del Auxiliar de Produción y Administración</title>
 </head>
+<body style="background: url(img/fondo.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;">
+     <!-- imagen de fondo tomada de: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOOmh3zRFPVXem3jqwfC0_EMt1Uby9QquArA&usqp=CAU -->
 
-<body>
-    <div>
-        <header>
-            <div class="header-group row">
-                <div class="d-flex justify-content-center container-fluid col">
-                    <h2 id="nombre-programa">Asistente de Produción y Administración</h2>
-                </div>
+        <div class="py-1 container-fluid">
+            <div class="border">
+                <header>
+                    <div class="header-group " style="background: rgba(193, 219, 235, 0.397);">
+                        <div class=" d-flex justify-content-center container-fluid ">
+                            <h2 id="nombre-programa ">Asistente de Produción y Administración</h2>
+                        </div>
+                    </div>
+                </header>
             </div>
-        </header>
-    </div>
 
-    <div id="contenido" class="py-3 container-fluid">
+            <div class="modal-body mb-0 ">
+                <div class="row ">
+                    <div class="col pl-4 ">
+                        <div class="container-fluid border ml-0 " style="width: 350px; background: rgba(193, 219, 235, 0.397); ">
+                            <div class="container-fluid ">
+                                <div>
+                                    <!-- Perfil personal -->
+                                    <h3 class="justify-content-center ">Desarrollador</h3>
 
-        <div id="caja-contenido " class="py-1 container-fluid row">
-            <div id="foto-del-cliente" class="py-1 col mx-auto">
-                <img src="/docs/img/retrato.jpg" width="320" height="240" controls></img>
+                                    <div id="foto-del-cliente " class="mx-auto ">
+                                       <img src="img/retrato.jpg" width="300 "></img>
+                                    </div>
+                                    <h5 class=" justify-content ">Yeison Hincapie Oquendo</h5>
+                                    <p id="propuesta-valor " class=" justify-content ">
+                                        Soy Maestro en Artes visuales y Técnico en Programación, vivo en la ciudad de Medellín Colombia, tengo 28 años. Me apacionan la docencia, las artes digitales y el mundo de la programación.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col pr-5 ">
+                        <div class="container-fluid ml-0 " style="width: 850px; background: rgba(193, 219, 235, 0.397); ">
+                            <div class="container-fluid pr-1 ">
+                                <div class="row ">
+                                    <!-- Perfil personal -->
+                                    <h3 class="justify-content-center ">Mi Proyecto</h3>
+
+                                    <p id="propuesta-valor " class=" justify-content ">
+                                        En una primera etapa de desarrollo el Asistente de Producción Y Administración es un software tipo CRUD que le permite a una empresa aplicar procesos de producción estandarizados, ya que sus funcionalidades están dirigidas a la gestión de pedidos, de
+                                        clientes y de su inventario de insumos, permitiéndole crear, almacenar y gestionar datos sobre sus clientes, procesos de producción e inventario en base de datos locales almacenadas en los ordenadores empresariales
+                                        para su uso desde el navegador. Este programa cuenta con tres módulos desarrollados a través de JavaScript, Node.js y una base de datos administrada con MySQL, permitiéndole a la empresa garantizar la estandarización
+                                        en la elaboración de sus productos.
+                                    </p>
+                                    <p id="propuesta-valor " class=" justify-content ">
+                                        En este sentido, se propone un programa con una interfaz simple e intuitiva para facilitar su uso en la planta de producción de la empresa, cuenta con cuatro perfiles: El gerente emprendedor, el auxiliar de producción, el auxiliar de inventario y el administrador
+                                        del sistema. Para agilizar los procesos, se proponen unas funciones principales que le permite ingresar información al sistema de los usuarios, de sus pedidos y de los insumos necesarios para los mismos por medio
+                                        de formularios, devolviendo listados de clientes, pedidos e insumos y fichas de producción. Con ello, se busca apoyar las áreas de pedidos, inventario y producción de la empresa.
+
+                                    </p>
+                                </div>
+                                <div class="row ">
+                                      <!--Botón de apertura de ventana modal #miVentana-->
+                                    <div class="py-1 container-fluid col ">
+                                        <div id="botones-mod-1 " class="d-flex justify-content-center ">
+                                            <a type="button" class="btn btn-primary" data-toggle="modal" href="#miVentana">Modelo Lógico</a>
+
+                                            <div class="modal hide fade"style="background: rgba(255, 255, 255, 0.918);" id="miVentana" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"> <!--Definición ventana modal-->
+                                                <div class="modal-dialog modal-lg ">
+                                                       <div class="modal-content ">
+                                                            <!--Cabecera ventana modal-->
+                                                          <div class="modal-header ">
+                                                                <h4 class="modal-title " id="modelo ">Modelo Lógico</h4>
+                                                                <a href="https://yeisonhincapie.github.io/Asistente-de-Produccion-y-Administracion/" class="btn btn-danger  " data-dismiss="modal"  aria-hidden="true">X</a> 
+                                                            </div>
+                                                          <div class="modal-body " style="background: rgba(255, 255, 255, 0.918);">
+                                                            <img src="img/modelo.png" width="770 "></img>
+                                                         </div>
+                                                    </div>
+                                                  </div>
+                                              <div class="modal-footer"> <!--Pie ventana modal-->
+                                                <a href="https://yeisonhincapie.github.io/Asistente-de-Produccion-y-Administracion/" class="btn btn-danger  " data-dismiss="modal"  aria-hidden="true">Cerrar</a>  
+                                            </div>
+
+                                            </div> 
+                                            <!--Final - Definición ventana modal-->
+                                        </div>
+                                    </div>
+                                <p></p>
+                                <p></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+               </div>
             </div>
-
-            <div class="col ">
-                <h4 class="d-flex justify-content-center  ">Desarrollador</h4>
-                <h5 class="d-flex justify-content ">Yeison Hincapie Oquendo</h5>
-                <h5 class="d-flex justify-content ">Maestro en Artes visuales</h5>
-                <h5 class="d-flex justify-content ">Técnico en Programación </h5>
-
-                <p id="propuesta-valor" class="d-flex justify-content  ">
-                    Soy de la ciudad de Medellín Colombia, tengo 28 años. Me apacionan la docencia, las artes digitales y el mundo de la programación.
-                </p>
-            </div>
-        </div>
-    </div>
-
-    <div id="espacio-blanco"></div>
-
+            
+    
+   
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
 </body>
 
